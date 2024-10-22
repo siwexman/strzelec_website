@@ -2,7 +2,7 @@ import Image from 'next/image';
 
 import logoZS from '../../public/LogoZSStrzelec.png';
 import InfoButtons from './InfoButtons/InfoButtons';
-import UserIcon from '../Icons/User';
+import UnderFooter from './UnderFooter';
 
 export default function Footer() {
     return (
@@ -18,14 +18,7 @@ export default function Footer() {
                 <InfoButtons />
             </div>
             <div className="w-full bg-black h-px my-4 rounded-lg linera-gradient-black"></div>
-            <div className="flex justify-between px-4 py-2">
-                <div className="flex gap-1">
-                    <UserIcon />
-                    <p className="text-sm my-auto">
-                        Zrealizował Karol Strączek
-                    </p>
-                </div>
-            </div>
+            <UnderFooter />
         </footer>
     );
 }
