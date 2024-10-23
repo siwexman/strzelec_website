@@ -1,4 +1,7 @@
+import Link from 'next/link';
+
 import NewsComponents from './NewsComponents';
+import ArrowRightIcon from '@/components/Icons/ArrowRight';
 
 export default function NewsSection() {
     return (
@@ -7,6 +10,14 @@ export default function NewsSection() {
                 <h2>Sprawdź najświeższe aktualności</h2>
             </div>
             <NewsComponents />
+            <div className="text-center">
+                <Link
+                    href={'/aktualnosci'}
+                    className="flex justify-center gap-2 font-semibold text-md"
+                >
+                    Przeczytaj więcej <ArrowRightIcon />
+                </Link>
+            </div>
         </section>
     );
 }
