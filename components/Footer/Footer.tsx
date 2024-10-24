@@ -17,7 +17,7 @@ export default function Footer() {
                 </div>
                 <InfoButtons />
             </div>
-            <div className="w-full bg-black h-px my-4 rounded-lg linera-gradient-black"></div>
+            <div className="w-full bg-black h-px my-4 rounded-lg linear-gradient-black"></div>
             <UnderFooter />
         </footer>
     );

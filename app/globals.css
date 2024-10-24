@@ -16,7 +16,7 @@ h2 {
     font-size: 2.5rem;
 }
 
-.linera-gradient-black {
+.linear-gradient-black {
     background: rgb(0, 0, 0);
     background: linear-gradient(
         90deg,
@@ -33,5 +33,14 @@ h2 {
         circle,
         rgba(0, 0, 0, 0.9) 0%,
         rgba(0, 0, 0, 0.2) 80%
+    );
+}
+
+.linear-gradient-flag {
+    background: rgb(255, 255, 255);
+    background: linear-gradient(
+        45deg,
+        rgba(255, 255, 255, 1) 45%,
+        rgba(220, 20, 60, 1) 100%
     );
 }

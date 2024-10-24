@@ -16,6 +16,7 @@ export default function RootLayout({
 }>) {
     return (
         <html lang="pl">
+            <title>Zwiazek Strzelecki</title>
             <body className={lato.className}>
                 <Header />
                 <main className="">{children}</main>
