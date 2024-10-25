@@ -44,3 +44,34 @@ h2 {
         rgba(220, 20, 60, 1) 100%
     );
 }
+
+.linear-gradient-white-left {
+    background: rgb(255, 255, 255);
+    background: linear-gradient(
+        90deg,
+        rgba(255, 255, 255, 1) 50%,
+        rgba(255, 255, 255, 0) 100%
+    );
+}
+
+.linear-gradient-white-right {
+    background: rgb(255, 255, 255);
+    background: linear-gradient(
+        270deg,
+        rgba(255, 255, 255, 1) 50%,
+        rgba(255, 255, 255, 0) 100%
+    );
+}
+
+.scroll-animation {
+    animation: swipe 15000ms linear infinite;
+}
+
+@keyframes swipe {
+    0% {
+        transform: translateX(0);
+    }
+    100% {
+        transform: translateX(-100%);
+    }
+}

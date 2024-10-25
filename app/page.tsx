@@ -2,6 +2,7 @@ import TitleSection from '@/components/HomePage/TitleSection';
 import NewsSection from '@/components/HomePage/News/NewsSection';
 import MagazineSection from '@/components/HomePage/MagazineSection';
 import PatronSection from '@/components/HomePage/PatronSection';
+import PartnersSection from '@/components/HomePage/PartnersSection/PartnersSection';
 
 export default function HomePage() {
     return (
@@ -10,12 +11,7 @@ export default function HomePage() {
             <NewsSection />
             <MagazineSection />
             <PatronSection />
-            <section>
-                <div className="text-center py-8">
-                    <h2>Nasi Patroni</h2>
-                </div>
-                <div>patroni...</div>
-            </section>
+            <PartnersSection />
         </>
     );
 }
