@@ -8,6 +8,9 @@ const config: Config = {
     ],
     theme: {
         extend: {
+            backgroundColor: {
+                black05: 'rgba(0, 0, 0, 0.5)',
+            },
             maxWidth: {
                 maxWidth: '1434px',
             },

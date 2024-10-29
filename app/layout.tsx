@@ -1,8 +1,8 @@
 import './globals.css';
 import { Lato } from 'next/font/google';
+import { ModalProvider } from '@/components/context/ModalContext';
 
-import Header from '@/components/Header/Header';
-import Footer from '@/components/Footer/Footer';
+import MainLayout from '@/components/layouts/MainLayout';
 
 const lato = Lato({
     subsets: ['latin'],
@@ -18,9 +18,9 @@ export default function RootLayout({
         <html lang="pl">
             <title>Zwiazek Strzelecki</title>
             <body className={lato.className}>
-                <Header />
-                <main className="">{children}</main>
-                <Footer />
+                <ModalProvider>
+                    <MainLayout>{children}</MainLayout>
+                </ModalProvider>
             </body>
         </html>
     );

@@ -5,15 +5,17 @@ import Link from 'next/link';
 import UserIcon from '../Icons/User';
 import FacebookIcon from '../Icons/Facebook';
 import YoutubeIcon from '../Icons/Youtube';
-import Button from '../UI/Button';
+import { useModal } from '../context/ModalContext';
 
 export default function UnderFooter() {
+    const { handleOpen } = useModal();
+
     return (
         <div className="flex justify-between px-4 py-2">
             <div className="flex gap-1">
-                <Button onClick={() => console.log('hello world')}>
+                <button onClick={() => handleOpen('login')}>
                     <UserIcon />
-                </Button>
+                </button>
                 <p className="text-sm my-auto">
                     Zrealizował{' '}
                     <a href="" className="font-semibold">

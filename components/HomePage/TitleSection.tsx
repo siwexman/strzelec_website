@@ -1,9 +1,12 @@
+'use client';
 import Image from 'next/image';
 
 import backgroundImage from '@/public/backgroundImages/1.jpg';
-import Link from 'next/link';
+import { useModal } from '../context/ModalContext';
 
 export default function TitleSection() {
+    const { handleOpen } = useModal();
+
     return (
         <section className="text-center pt-48 w-full">
             <div className="relative">
@@ -25,12 +28,12 @@ export default function TitleSection() {
                         culpa.
                     </p>
                     <div className="py-8">
-                        <Link
-                            href={''}
+                        <button
+                            onClick={() => handleOpen('join')}
                             className="p-4 text-xl bg-black font-semibold rounded-lg border"
                         >
                             Zostań Strzelcem
-                        </Link>
+                        </button>
                     </div>
                 </div>
             </div>

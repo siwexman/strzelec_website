@@ -6,7 +6,7 @@ import MainNav from './NavBar/MainNav';
 
 export default function Header() {
     return (
-        <header className="w-full mx-auto fixed z-50 py-4 h-48 bg-white shadow-md drop-shadow-md">
+        <header className="w-full mx-auto fixed z-10 py-4 h-48 bg-white shadow-md drop-shadow-md">
             <div className="max-w-maxWidth mx-auto flex justify-between h-full ">
                 <Link href="/">
                     <Image

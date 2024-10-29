@@ -6,7 +6,7 @@ import UnderFooter from './UnderFooter';
 
 export default function Footer() {
     return (
-        <footer className="max-w-maxWidth mx-auto relative z-20 bg-white">
+        <footer className="max-w-maxWidth mx-auto relative z-10 bg-white">
             <div className="w-full flex justify-between px-4 h-28">
                 <div>
                     <Image
