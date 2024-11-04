@@ -1,13 +1,17 @@
-import './globals.css';
-import { Lato } from 'next/font/google';
-import { ModalProvider } from '@/components/context/ModalContext';
+import { Metadata } from 'next';
 
-import MainLayout from '@/components/layouts/MainLayout';
+import { Lato } from 'next/font/google';
+import './globals.css';
 
 const lato = Lato({
     subsets: ['latin'],
     weight: ['400', '700'],
 });
+
+export const metadata: Metadata = {
+    title: 'Związek Strzelecki',
+    description: 'lorem ipsums ocas as dasdaisd',
+};
 
 export default function RootLayout({
     children,
@@ -16,12 +20,7 @@ export default function RootLayout({
 }>) {
     return (
         <html lang="pl">
-            <title>Zwiazek Strzelecki</title>
-            <body className={lato.className}>
-                <ModalProvider>
-                    <MainLayout>{children}</MainLayout>
-                </ModalProvider>
-            </body>
+            <body className={lato.className}>{children}</body>
         </html>
     );
 }

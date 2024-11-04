@@ -2,12 +2,20 @@
 
 import { login } from '@/store/actions/login';
 import { useFormState } from 'react-dom';
+import { useModal } from '../context/ModalContext';
 
 export default function LoginForm() {
     const [state, formAction] = useFormState<any, FormData>(login, undefined);
+    const { handleClose } = useModal();
+
+    function handleSubmitClose() {
+        if (state && !state.error) {
+            handleClose();
+        }
+    }
 
     return (
-        <form action={formAction} className="py-2">
+        <form onSubmit={handleSubmitClose} action={formAction} className="py-2">
             <div className="flex flex-col p-2 gap-2">
                 <label htmlFor="login">Login:</label>
                 <input

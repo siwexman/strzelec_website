@@ -5,8 +5,10 @@ import { getIronSession } from 'iron-session';
 import { cookies } from 'next/headers';
 import { redirect } from 'next/navigation';
 
-const username = 'karol';
-const password = '12345';
+const user = {
+    username: 'karol',
+    password: '12345',
+};
 
 export async function getSession() {
     const session = await getIronSession<SessionData>(
@@ -32,21 +34,25 @@ export async function login(
 
     // TODO db user
 
-    if (login !== username) {
-        return { error: 'Wrong username' };
+    if (login !== user.username && password !== user.password) {
+        return { error: 'Wrong username or password' };
     }
 
     session.userId = '1';
     session.username = login;
+    session.isLoggedIn = true;
 
     await session.save();
 
     redirect('/dashboard');
 }
 
-export async function logout() {
+export async function logout(isRedirected: boolean = true) {
     const session = await getSession();
 
     session.destroy();
-    redirect('/');
+
+    if (isRedirected) {
+        redirect('/');
+    }
 }
