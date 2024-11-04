@@ -2,13 +2,13 @@
 import Image from 'next/image';
 
 import backgroundImage from '@/public/backgroundImages/1.jpg';
-import { useModal } from '../context/ModalContext';
+import { useModal } from '@/components/context/ModalContext';
 
 export default function TitleSection() {
     const { handleOpen } = useModal();
 
     return (
-        <section className="text-center pt-48 w-full">
+        <section className="text-center w-full">
             <div className="relative">
                 <Image
                     className="w-full h-full"

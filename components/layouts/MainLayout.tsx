@@ -8,7 +8,7 @@ export default function MainLayout(props: { children: ReactNode }) {
         <>
             <Modal />
             <Header />
-            <main>{props.children}</main>
+            <main className="pt-48">{props.children}</main>
             <Footer />
         </>
     );

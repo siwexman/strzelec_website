@@ -14,10 +14,13 @@ export default function Modal() {
 
     return (
         <dialog
-            onClose={handleClose}
+            onClick={handleClose}
             className="bg-black05 w-full h-full fixed z-20 top-0 left-0 flex justify-center items-center"
         >
-            <div className="bg-white p-6 max-w-[500px] min-w-[350px] rounded-xl relative">
+            <div
+                onClick={e => e.stopPropagation()}
+                className="bg-white p-6 max-w-[500px] min-w-[350px] rounded-xl relative"
+            >
                 {/* <div className="w-full flex justify-end"> */}
                 <button
                     className="absolute top-2 right-2"

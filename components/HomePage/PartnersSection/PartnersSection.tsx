@@ -1,5 +1,5 @@
 'use client';
-import { partners } from '@/components/data/partners';
+import { partners } from '@/store/data/partners';
 import PartnersLoop from './PartnersLoop';
 
 export default function PartnersSection() {
