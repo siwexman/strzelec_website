@@ -2,7 +2,7 @@ import Image from 'next/image';
 
 import logoZS from '../../public/LogoZSStrzelec.png';
 import InfoButtons from './InfoButtons/InfoButtons';
-import UnderFooter from './UnderFooter';
+import UnderFooter from './UnderFooter/UnderFooter';
 
 export default function Footer() {
     return (

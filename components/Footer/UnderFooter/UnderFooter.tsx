@@ -1,21 +1,17 @@
-'use client';
-
 import Link from 'next/link';
 
-import UserIcon from '../Icons/User';
-import FacebookIcon from '../Icons/Facebook';
-import YoutubeIcon from '../Icons/Youtube';
-import { useModal } from '../context/ModalContext';
+import FacebookIcon from '../../Icons/Facebook';
+import YoutubeIcon from '../../Icons/Youtube';
+import LoginButton from './LoginButton';
+import { getSessionUser } from '@/store/action/session';
 
-export default function UnderFooter() {
-    const { handleOpen } = useModal();
+export default async function UnderFooter() {
+    const user = await getSessionUser();
 
     return (
         <div className="flex justify-between px-4 py-2">
             <div className="flex gap-1">
-                <button onClick={() => handleOpen('login')}>
-                    <UserIcon />
-                </button>
+                {!user && <LoginButton />}
                 <p className="text-sm my-auto">
                     Zrealizował{' '}
                     <a href="" className="font-semibold">

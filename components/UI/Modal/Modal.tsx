@@ -3,7 +3,7 @@
 import { useModal } from '@/components/context/ModalContext';
 import CloseIcon from '@/components/Icons/Close';
 import Join from '../Join';
-import Login from '../Login';
+import Login from '../Login/Login';
 
 export default function Modal() {
     const { isOpen, handleClose, modalContent } = useModal();

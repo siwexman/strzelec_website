@@ -13,6 +13,7 @@ const config: Config = {
             },
             maxWidth: {
                 maxWidth: '1434px',
+                maxWidthSm: '1024px',
             },
         },
     },
