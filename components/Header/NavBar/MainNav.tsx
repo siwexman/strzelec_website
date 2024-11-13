@@ -1,6 +1,6 @@
 import { getServerSession } from 'next-auth';
 import NavItem from './NavItem';
-import { authOptions } from '@/config/auth';
+import { authOptions } from '@/lib/auth';
 
 export default async function MainNav() {
     const session = getServerSession(authOptions);

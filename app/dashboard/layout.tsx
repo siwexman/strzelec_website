@@ -1,4 +1,4 @@
-import UserNav from '@/components/UI/UserNav/UserNav';
+import MainDashboardLayout from '@/components/layouts/MainDashboardLayout';
 import { Metadata } from 'next';
 
 export const metadata: Metadata = {
@@ -10,10 +10,5 @@ export default function DashboardLayout({
 }: Readonly<{
     children: React.ReactNode;
 }>) {
-    return (
-        <main>
-            <UserNav />
-            {children}
-        </main>
-    );
+    return <MainDashboardLayout>{children}</MainDashboardLayout>;
 }

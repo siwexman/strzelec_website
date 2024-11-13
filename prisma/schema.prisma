@@ -7,6 +7,7 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
+// user schema
 model User {
     id Int @id @default(autoincrement())
     name String @unique
@@ -15,17 +16,20 @@ model User {
     posts Post[]
 }
 
+// post schema
 model Post{
     id Int @id @default(autoincrement())
     title String
+    summary String
     description String
-    text String
     date DateTime
     author User @relation(fields: [authorId], references: [id])
     authorId Int
     images Image[]
 }
 
+// image schema
+// image => path to real image, id of post that image belong
 model Image{
     id Int @id @default(autoincrement())
     path String
