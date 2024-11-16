@@ -1,4 +1,4 @@
-import { ImageFile } from '@/components/context/ImageContext';
+import { ImageFile } from '@/types/imageFile';
 import ImagePick from './ImagePick';
 
 export default function ImagePicker(props: { pickedImages: ImageFile[] }) {

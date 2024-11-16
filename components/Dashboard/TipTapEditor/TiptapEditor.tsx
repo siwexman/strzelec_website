@@ -16,7 +16,7 @@ export default function TiptapEditor(props: {
             StarterKit.configure({
                 heading: {
                     HTMLAttributes: {
-                        class: 'text-sm font-bold text-left',
+                        class: 'text-lg font-bold text-left',
                         level: [3],
                     },
                 },

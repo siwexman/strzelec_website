@@ -6,7 +6,7 @@ import { prisma } from '@/lib/prisma';
 export const authOptions: NextAuthOptions = {
     session: {
         strategy: 'jwt',
-        // maxAge: 2 * 60 * 60,
+        maxAge: 2 * 60 * 60,
     },
     pages: {
         signIn: '/',
@@ -19,6 +19,7 @@ export const authOptions: NextAuthOptions = {
                         id: parseInt(user.id),
                     },
                 });
+                token.id = dbUser?.id;
                 token.name = dbUser?.name;
                 token.role = dbUser?.role || 'Blogger';
             }
@@ -26,9 +27,12 @@ export const authOptions: NextAuthOptions = {
             return token;
         },
         async session({ session, token }) {
+            session.user.id = token.id;
             session.user.name = firstLetterToUpper(token.name);
             session.user.role = token.role;
-            console.log(session);
+
+            console.log('session', session);
+            
             return session;
         },
     },

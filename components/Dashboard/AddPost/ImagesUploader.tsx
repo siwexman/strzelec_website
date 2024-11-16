@@ -8,7 +8,8 @@ import {
 import { Input } from '@/components/UI/input';
 import ImagePicker from '@/components/Dashboard/AddPost/ImagePicker';
 import { ChangeEvent, useRef } from 'react';
-import { ImageFile, useImageContext } from '@/components/context/ImageContext';
+import { useImageContext } from '@/components/context/ImageContext';
+import { ImageFile } from '@/types/imageFile';
 import { imageSchema } from '@/types/formSchema';
 
 export default function ImagesUploader({ form }) {
@@ -48,7 +49,7 @@ export default function ImagesUploader({ form }) {
 
             fileReader.onload = () => {
                 const image = {
-                    name: file.name,
+                    base: file,
                     src: fileReader.result as string,
                 };
                 images.push(image);

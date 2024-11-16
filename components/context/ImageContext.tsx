@@ -1,9 +1,5 @@
 import { createContext, useContext, useState } from 'react';
-
-export type ImageFile = {
-    name: string;
-    src: string;
-};
+import { ImageFile } from '@/types/imageFile';
 
 interface ImageContextProps {
     images: ImageFile[];
@@ -19,7 +15,8 @@ export function ImageProvider(props: { children: JSX.Element }) {
     function addImages(images: ImageFile[]) {
         setImages(prevState => {
             const filtered = images.filter(
-                img2 => !prevState.some(img1 => img1.name === img2.name)
+                img2 =>
+                    !prevState.some(img1 => img1.base.name === img2.base.name)
             );
             const result = [...prevState, ...filtered];
 
@@ -28,7 +25,9 @@ export function ImageProvider(props: { children: JSX.Element }) {
     }
 
     function removeImage(name: string) {
-        setImages(prevState => prevState.filter(image => image.name !== name));
+        setImages(prevState =>
+            prevState.filter(image => image.base.name !== name)
+        );
     }
 
     return (

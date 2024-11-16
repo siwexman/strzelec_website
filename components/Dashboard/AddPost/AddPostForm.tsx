@@ -17,21 +17,24 @@ import ImagesUploader from '@/components/Dashboard/AddPost/ImagesUploader';
 import { useForm } from 'react-hook-form';
 import { userFormSchema } from '@/types/formSchema';
 import { useImageContext } from '@/components/context/ImageContext';
+import { prisma } from '@/lib/prisma';
+import { getSession } from 'next-auth/react';
+import { savePost } from '@/store/action/posts';
 
-export default function AddPost() {
+export default function AddPostForm() {
     const { images } = useImageContext();
 
     const form = useForm<z.infer<typeof userFormSchema>>({
         resolver: zodResolver(userFormSchema),
         mode: 'onChange',
         defaultValues: {
-            title: '',
-            summary: '',
-            description: '',
+            title: 'tytuł tutaj',
+            summary: 'podsumowanie tutaj',
+            description: 'a tu tresc posta',
         },
     });
 
-    function handleSubmit(values: z.infer<typeof userFormSchema>) {
+    async function handleSubmit(values: z.infer<typeof userFormSchema>) {
         if (images.length === 0) {
             form.setError('images', {
                 type: 'custom',
@@ -41,9 +44,13 @@ export default function AddPost() {
 
         const formData = {
             ...values,
-            images,
+            // images,
         };
         console.log(formData);
+
+        const { user } = await getSession();
+
+        savePost(formData, user.id);
     }
 
     return (

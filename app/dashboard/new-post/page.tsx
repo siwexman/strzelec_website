@@ -1,15 +1,14 @@
 'use client';
 
 import { ImageProvider } from '@/components/context/ImageContext';
-
-import AddPost from '@/components/Dashboard/AddPost/AddPost';
+import AddPostForm from '@/components/Dashboard/AddPost/AddPostForm';
 
 export default function NewPostPage() {
     return (
         <div className="text-center">
             <h2>Nowy Post</h2>
             <ImageProvider>
-                <AddPost />
+                <AddPostForm />
             </ImageProvider>
         </div>
     );
