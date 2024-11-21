@@ -17,9 +17,8 @@ import ImagesUploader from '@/components/Dashboard/AddPost/ImagesUploader';
 import { useForm } from 'react-hook-form';
 import { userFormSchema } from '@/types/formSchema';
 import { useImageContext } from '@/components/context/ImageContext';
-import { prisma } from '@/lib/prisma';
-import { getSession } from 'next-auth/react';
-import { savePost } from '@/store/action/posts';
+import { getServerSession } from 'next-auth';
+import { getSessionUser } from '@/store/action/session';
 
 export default function AddPostForm() {
     const { images } = useImageContext();
@@ -40,17 +39,36 @@ export default function AddPostForm() {
                 type: 'custom',
                 message: 'Nie przesłano żadnych zdjęć',
             });
+
+            return;
         }
 
-        const formData = {
-            ...values,
-            // images,
-        };
-        console.log(formData);
+        try {
+            const formData = new FormData();
 
-        const { user } = await getSession();
+            formData.append('title', values.title);
+            formData.append('summary', values.summary);
+            formData.append('description', values.description);
+            for (const image of images) {
+                formData.append('images', image.base);
+            }
 
-        savePost(formData, user.id);
+            const res = await fetch('/api/upload', {
+                method: 'POST',
+                body: formData,
+            });
+
+            if (res.ok) {
+                const result = await res.json();
+                console.log('Post successfully submitted:', result);
+            } else {
+                console.error('Error uploading post:', res.statusText);
+            }
+
+            console.log(res);
+        } catch (err) {
+            console.error('Error submitting form:', err);
+        }
     }
 
     return (

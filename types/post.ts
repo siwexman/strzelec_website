@@ -6,3 +6,10 @@ export type Post = {
     description: string;
     images: ImageFile[];
 };
+
+export type UploadedPost = {
+    title: string;
+    summary: string;
+    description: string;
+    images: File[];
+};

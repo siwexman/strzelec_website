@@ -6,7 +6,7 @@ import { prisma } from '@/lib/prisma';
 export const authOptions: NextAuthOptions = {
     session: {
         strategy: 'jwt',
-        maxAge: 2 * 60 * 60,
+        // maxAge: 2 * 60 * 60,
     },
     pages: {
         signIn: '/',
@@ -27,31 +27,43 @@ export const authOptions: NextAuthOptions = {
             return token;
         },
         async session({ session, token }) {
-            session.user.id = token.id;
-            session.user.name = firstLetterToUpper(token.name);
-            session.user.role = token.role;
+            session.user.id = token.id as number;
+            session.user.name = firstLetterToUpper(token.name) as string;
+            session.user.role = token.role as string;
 
-            console.log('session', session);
-            
             return session;
         },
     },
     providers: [
         CredentialsProvider({
             credentials: {
-                username: {},
-                password: {},
+                username: { label: 'Username', type: 'text' },
+                password: { label: 'Password', type: 'password' },
             },
-            async authorize(credentials, req) {
-                const response = await prisma.user.findUnique({
+            async authorize(
+                credentials: {
+                    username?: string;
+                    password?: string;
+                },
+                req
+            ) {
+                if (!credentials?.username || !credentials?.password) {
+                    return null;
+                }
+
+                const user = await prisma.user.findUnique({
                     where: {
-                        name: credentials?.username,
+                        name: credentials.username,
                     },
                 });
-                const user = response;
+
+                if (!user) {
+                    console.log('User not found');
+                    return null;
+                }
 
                 const passwordCorrect = await compare(
-                    credentials?.password || '',
+                    credentials.password,
                     user.password
                 );
 

@@ -6,7 +6,7 @@ export default function Dashboard() {
             <div className="bg-slate-600 col-span-5 row-span-3 p-4">
                 Google Analitics
             </div>
-            <Link href={'/dashboard/new-post'} className="bg-red-600 p-2">
+            <Link href={'/dashboard/new'} className="bg-red-600 p-2">
                 Dodaj nowy post
             </Link>
             <div className="bg-red-600 p-2">Edytuj post</div>

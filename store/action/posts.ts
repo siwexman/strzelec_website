@@ -1,12 +1,14 @@
 'use server';
 
+import { join } from 'path';
+import { writeFile } from 'fs/promises';
 import { prisma } from '@/lib/prisma';
+
 import { ImageFile } from '@/types/imageFile';
 import { Post } from '@/types/post';
-import { promises as fs } from 'fs';
 
 export async function getPosts() {}
-export async function getPost(id) {}
+export async function getPost() {}
 
 export async function savePost(userPost: Post, authorId: number) {
     const post = await prisma.post.create({
@@ -18,15 +20,4 @@ export async function savePost(userPost: Post, authorId: number) {
         },
     });
     console.log(post);
-}
-
-export async function saveImages(images: ImageFile[], postId: number) {
-    // const files: File[] = [];
-
-    const file = await images[0].base.arrayBuffer();
-
-    await fs.writeFile(
-        `${process.cwd()}/public/uploads/${postId}`,
-        Buffer.from(file)
-    );
 }
