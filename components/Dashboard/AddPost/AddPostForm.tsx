@@ -14,14 +14,15 @@ import {
 import { Input } from '@/components/UI/input';
 import ImagesUploader from '@/components/Dashboard/AddPost/ImagesUploader';
 
-import { useForm } from 'react-hook-form';
+import { useForm, useFormState } from 'react-hook-form';
 import { userFormSchema } from '@/types/formSchema';
 import { useImageContext } from '@/components/context/ImageContext';
-import { getServerSession } from 'next-auth';
-import { getSessionUser } from '@/store/action/session';
+import { useRouter } from 'next/navigation';
 
 export default function AddPostForm() {
     const { images } = useImageContext();
+    const router = useRouter();
+    const state = useFormState();
 
     const form = useForm<z.infer<typeof userFormSchema>>({
         resolver: zodResolver(userFormSchema),
@@ -61,6 +62,8 @@ export default function AddPostForm() {
             if (res.ok) {
                 const result = await res.json();
                 console.log('Post successfully submitted:', result);
+
+                router.push('/dashboard');
             } else {
                 console.error('Error uploading post:', res.statusText);
             }
@@ -127,7 +130,7 @@ export default function AddPostForm() {
                     type="submit"
                     className="bg-green-600 hover:bg-green-400 float-end"
                 >
-                    Submit
+                    {'Zapisz'}
                 </Button>
             </form>
         </Form>
