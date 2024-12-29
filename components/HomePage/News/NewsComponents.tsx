@@ -1,11 +1,15 @@
 import NewsItem from './NewsItem';
 
-export default function NewsComponents() {
+import { getPostsWithImages } from '@/store/action/getPosts';
+
+export default async function NewsComponents() {
+    const posts = await getPostsWithImages(3);
+
     return (
-        <div className="flex justify-between gap-4 py-4">
-            <NewsItem />
-            <NewsItem />
-            <NewsItem />
+        <div className="flex justify-center gap-4 py-4 items-stretch">
+            {posts.map(post => (
+                <NewsItem key={post.id} post={post} />
+            ))}
         </div>
     );
 }

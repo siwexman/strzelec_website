@@ -29,7 +29,8 @@ export default function Modal() {
                     <CloseIcon />
                 </button>
                 {/* </div> */}
-                {modalContent === 'join' ? <Join /> : <Login />}
+                {modalContent === 'join' && <Join />}
+                {modalContent === 'login' && <Login />}
             </div>
         </dialog>
     );

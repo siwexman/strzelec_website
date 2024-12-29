@@ -22,7 +22,7 @@ model Post{
     title String
     summary String
     description String // on get convert to html (example string <p>something</p>)
-    date DateTime @default(now()) // in displaying date to users -> Date().toLocalString()
+    date DateTime
     author User @relation(fields: [authorId], references: [id])
     authorId Int
     images Image[]

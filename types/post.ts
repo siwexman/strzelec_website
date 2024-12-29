@@ -13,3 +13,18 @@ export type UploadedPost = {
     description: string;
     images: File[];
 };
+
+export type PostWithImages = {
+    images: {
+        id: number;
+        url: string;
+        postId: number;
+    }[];
+} & {
+    summary: string;
+    title: string;
+    id: number;
+    date: Date;
+    description: string;
+    authorId: number;
+};

@@ -1,27 +1,29 @@
 import Image from 'next/image';
 import Link from 'next/link';
 
-import backgroundImage from '@/public/backgroundImages/1.jpg';
+import { PostWithImages } from '@/types/post';
 
-export default function NewsItem() {
+export default function NewsItem({ post }: { post: PostWithImages }) {
     return (
-        <Link href={''}>
-            <div className="px-4 py-2">
-                <div className="border rounded-t-2xl shadow">
-                    <Image
-                        className="rounded-t-2xl"
-                        src={backgroundImage}
-                        alt=""
-                    />
-                    <div className="py-4 px-2">
-                        <h4 className="text-xl font-semibold py-2">
-                            Jakiś tytuł tutaj
+        <Link href={''} className="p-2 w-full">
+            <div className="px-4 py-2 h-full">
+                <div className="border rounded-t-2xl shadow flex flex-col h-full">
+                    <div className="relative min-h-60">
+                        <Image
+                            priority
+                            className="rounded-t-2xl"
+                            src={post.images[0].url}
+                            alt={post.title}
+                            fill
+                            sizes="100vw"
+                        />
+                    </div>
+                    <div className="py-4 px-2 text-center">
+                        <h4 className="text-xl font-semibold py-2 text-center uppercase">
+                            {post.title}
                         </h4>
-                        <p>
-                            Lorem ipsum dolor sit amet consectetur adipisicing
-                            elit. Eveniet aspernatur asperiores ad veritatis
-                            nobis, neque eius iusto.
-                        </p>
+                        <div className="w-full p-px rounded-xl linear-gradient-flag-w-r-w"></div>
+                        <p className="text-balance pt-2">{post.summary}</p>
                     </div>
                 </div>
             </div>

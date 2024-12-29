@@ -1,14 +1,15 @@
-import { NextRequest, NextResponse } from 'next/server';
+'use server';
+
 import { prisma } from '@/lib/prisma';
 import { UploadedPost } from '@/types/post';
 import { getSessionUser } from '@/store/action/session';
 import path from 'path';
 import fs from 'fs/promises';
 
-export async function POST(request: NextRequest) {
+export default async function uploadPost(formData: FormData) {
+    const user = await getSessionUser();
+
     try {
-        const data = await request.formData();
-        const user = await getSessionUser();
         const uploadedPost: UploadedPost = {
             title: '',
             summary: '',
@@ -17,19 +18,16 @@ export async function POST(request: NextRequest) {
         };
 
         if (!user) {
-            return NextResponse.json(
-                { error: 'Unauthorized' },
-                { status: 401 }
-            );
+            return;
         }
 
-        data.forEach((value, key) => {
+        formData.forEach((value, key) => {
             if (key !== 'images') {
                 uploadedPost[key as 'title' | 'summary' | 'description'] =
                     value as string;
             } else {
-                if (data.getAll(key).length > 1) {
-                    uploadedPost.images = data.getAll(key) as File[];
+                if (formData.getAll(key).length > 1) {
+                    uploadedPost.images = formData.getAll(key) as File[];
                 } else {
                     uploadedPost.images = [value as File];
                 }
@@ -39,10 +37,11 @@ export async function POST(request: NextRequest) {
         // create post
         const post = await prisma.post.create({
             data: {
-                authorId: user.id,
                 title: uploadedPost.title,
                 summary: uploadedPost.summary,
                 description: uploadedPost.description,
+                authorId: user.id,
+                date: new Date(),
             },
         });
 
@@ -77,20 +76,5 @@ export async function POST(request: NextRequest) {
         console.log({ post, images: uploadedImages });
     } catch (error) {
         console.log(error);
-    }
-
-    return NextResponse.json({ message: 'success' });
-}
-
-export async function GET(request: NextRequest) {
-    try {
-        const posts = await prisma.post.findMany();
-
-        return NextResponse.json(posts);
-    } catch (error) {
-        return NextResponse.json(
-            { error: 'Failed to fertch posts' },
-            { status: 500 }
-        );
     }
 }

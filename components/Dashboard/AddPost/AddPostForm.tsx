@@ -14,23 +14,24 @@ import {
 import { Input } from '@/components/UI/input';
 import ImagesUploader from '@/components/Dashboard/AddPost/ImagesUploader';
 
-import { useForm, useFormState } from 'react-hook-form';
+import { useForm } from 'react-hook-form';
 import { userFormSchema } from '@/types/formSchema';
 import { useImageContext } from '@/components/context/ImageContext';
 import { useRouter } from 'next/navigation';
+import uploadPost from '@/store/action/upload';
 
 export default function AddPostForm() {
     const { images } = useImageContext();
     const router = useRouter();
-    const state = useFormState();
 
     const form = useForm<z.infer<typeof userFormSchema>>({
         resolver: zodResolver(userFormSchema),
         mode: 'onChange',
         defaultValues: {
-            title: 'tytuł tutaj',
-            summary: 'podsumowanie tutaj',
-            description: 'a tu tresc posta',
+            title: '',
+            summary: '',
+            description: '',
+            images: [],
         },
     });
 
@@ -54,21 +55,9 @@ export default function AddPostForm() {
                 formData.append('images', image.base);
             }
 
-            const res = await fetch('/api/upload', {
-                method: 'POST',
-                body: formData,
-            });
+            uploadPost(formData);
 
-            if (res.ok) {
-                const result = await res.json();
-                console.log('Post successfully submitted:', result);
-
-                router.push('/dashboard');
-            } else {
-                console.error('Error uploading post:', res.statusText);
-            }
-
-            console.log(res);
+            router.push('/dashboard');
         } catch (err) {
             console.error('Error submitting form:', err);
         }
@@ -76,20 +65,22 @@ export default function AddPostForm() {
 
     return (
         <Form {...form}>
-            <form onSubmit={form.handleSubmit(handleSubmit)}>
+            <form onSubmit={form.handleSubmit(handleSubmit)} className="py-4">
                 <FormField
                     control={form.control}
                     name="title"
                     render={({ field }) => (
-                        <FormItem>
-                            <FormLabel>Title</FormLabel>
+                        <FormItem className="py-4">
+                            <FormLabel className="font-semibold">
+                                Tytuł
+                            </FormLabel>
                             <FormControl>
                                 <Input
                                     placeholder="Wpisz tytuł posta"
                                     {...field}
                                 />
                             </FormControl>
-                            <FormMessage />
+                            <FormMessage className="pb-4" />
                         </FormItem>
                     )}
                 />
@@ -97,8 +88,10 @@ export default function AddPostForm() {
                     control={form.control}
                     name="summary"
                     render={({ field }) => (
-                        <FormItem>
-                            <FormLabel>Podsumowanie</FormLabel>
+                        <FormItem className="py-4">
+                            <FormLabel className="font-semibold">
+                                Podsumowanie
+                            </FormLabel>
                             <FormControl>
                                 <Input
                                     placeholder="Wpisz podsumowanie posta"
@@ -113,8 +106,10 @@ export default function AddPostForm() {
                     control={form.control}
                     name="description"
                     render={({ field }) => (
-                        <FormItem>
-                            <FormLabel>Description</FormLabel>
+                        <FormItem className="py-4">
+                            <FormLabel className="font-semibold">
+                                Treść postu
+                            </FormLabel>
                             <FormControl>
                                 <TiptapEditor
                                     description={field.name}
@@ -126,12 +121,14 @@ export default function AddPostForm() {
                     )}
                 />
                 <ImagesUploader form={form} />
-                <Button
-                    type="submit"
-                    className="bg-green-600 hover:bg-green-400 float-end"
-                >
-                    {'Zapisz'}
-                </Button>
+                <div className="w-full flex justify-end py-10 relative">
+                    <Button
+                        type="submit"
+                        className="bg-green-600 hover:bg-green-400 float-end px-8 font-bold"
+                    >
+                        Dodaj post
+                    </Button>
+                </div>
             </form>
         </Form>
     );

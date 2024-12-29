@@ -6,7 +6,7 @@ export default function ImagePicker(props: { pickedImages: ImageFile[] }) {
 
     return (
         <div
-            className={`w-full border rounded-md flex overflow-x-auto ${
+            className={`w-full border rounded-md flex overflow-x-auto relative ${
                 isEmpty && 'justify-center'
             }`}
         >

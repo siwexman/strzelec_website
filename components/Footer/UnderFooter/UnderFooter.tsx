@@ -2,23 +2,12 @@ import Link from 'next/link';
 
 import FacebookIcon from '../../Icons/Facebook';
 import YoutubeIcon from '../../Icons/Youtube';
-import LoginButton from './LoginButton';
-import { getSessionUser } from '@/store/action/session';
+import UserLogged from './UserLogged';
 
-export default async function UnderFooter() {
-    const user = await getSessionUser();
-
+export default function UnderFooter() {
     return (
         <div className="flex justify-between px-4 py-2">
-            <div className="flex gap-1">
-                {!user && <LoginButton />}
-                <p className="text-sm my-auto">
-                    Zrealizował{' '}
-                    <a href="" className="font-semibold">
-                        Karol Strączek
-                    </a>
-                </p>
-            </div>
+            <UserLogged />
             <div className="flex gap-4 px-2">
                 <Link href={''}>
                     <FacebookIcon />

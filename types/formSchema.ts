@@ -16,8 +16,14 @@ export const imageSchema = z
     });
 
 export const userFormSchema = z.object({
-    title: z.string().min(3, { message: 'Tytuł jest za krótki' }),
-    summary: z.string().min(5, { message: 'Podsumowanie jest za krótkie' }),
+    title: z
+        .string()
+        .min(5, { message: 'Tytuł jest za krótki' })
+        .max(60, { message: 'Tytuł jest za długi' }),
+    summary: z
+        .string()
+        .min(5, { message: 'Podsumowanie jest za krótkie' })
+        .max(250, { message: 'Podsumowanie jest za długie' }),
     description: z.string().min(5, { message: 'Post jest za krótki' }),
     images: z.any(),
 });

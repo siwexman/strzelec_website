@@ -63,43 +63,52 @@ export default function ImagesUploader({ form }) {
         });
     }
     return (
-        <div className="w-full flex flex-col">
-            <FormLabel htmlFor="images" className="col-span-4">
-                Twoje zdjęcia:
-            </FormLabel>
-            <div className="flex justify-between gap-2 relative">
-                <FormField
-                    control={form.control}
-                    name="images"
-                    render={({ field }) => (
-                        <FormItem>
-                            <FormControl className="hidden">
-                                <Input
-                                    ref={imageInput}
-                                    name={field.name}
-                                    multiple
-                                    accept="image/png, image/jpeg, image/jpg"
-                                    type="file"
-                                    className="hidden"
-                                    onChange={handleImageChange}
-                                />
-                            </FormControl>
-                            {form.formState.errors.images && (
-                                <p className="absolute px-4 bottom-0 text-sm font-medium text-red-500">
-                                    {form.formState.errors.images.message}
-                                </p>
-                            )}
-                        </FormItem>
-                    )}
-                />
-                <Button
-                    className="w-1/3 my-auto bg-slate-600"
-                    type="button"
-                    onClick={handlePickClick}
-                >
-                    Wybierz zdjęcia
-                </Button>
-                <ImagePicker pickedImages={images} />
+        <div className="w-full flex flex-col pt-4">
+            <div className="grid grid-cols-3 gap-2 relative items-center">
+                <div className="">
+                    <FormField
+                        control={form.control}
+                        name="images"
+                        render={({ field }) => (
+                            <FormItem className="hidden">
+                                <FormControl>
+                                    <Input
+                                        ref={imageInput}
+                                        name={field.name}
+                                        multiple
+                                        accept="image/png, image/jpeg, image/jpg"
+                                        type="file"
+                                        onChange={handleImageChange}
+                                    />
+                                </FormControl>
+                                {form.formState.errors.images && (
+                                    <p className="absolute px-4 bottom-0 text-sm font-medium text-red-500">
+                                        {form.formState.errors.images.message}
+                                    </p>
+                                )}
+                            </FormItem>
+                        )}
+                    />
+                    <Button
+                        className=" bg-slate-600 w-3/4"
+                        type="button"
+                        onClick={handlePickClick}
+                    >
+                        Wybierz zdjęcia
+                    </Button>
+                </div>
+                <div className="col-span-2 relative py-2">
+                    <FormLabel htmlFor="images" className="font-semibold">
+                        Twoje zdjęcia
+                    </FormLabel>
+                    <ImagePicker pickedImages={images} />
+
+                    <div className="bg-yellow-300 text-sm rounded-lg absolute bottom-0 translate-x-1/2">
+                        <p className="px-2">
+                            Pierwsze zdjęcie będzie zdjęciem głównym postu!
+                        </p>
+                    </div>
+                </div>
             </div>
         </div>
     );

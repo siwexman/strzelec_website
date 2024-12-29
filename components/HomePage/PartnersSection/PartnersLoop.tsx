@@ -1,5 +1,5 @@
 import PartnersRow from './PartnersRow';
-import { Partners } from '@/components/data/partners';
+import { Partners } from '@/store/data/partners';
 
 export default function PartnersLoop({ images }: Partners) {
     return (
