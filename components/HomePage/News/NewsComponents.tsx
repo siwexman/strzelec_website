@@ -1,6 +1,6 @@
 import NewsItem from './NewsItem';
 
-import { getPostsWithImages } from '@/store/action/getPosts';
+import { getPostsWithImages } from '@/store/action/get/getPosts';
 
 export default async function NewsComponents() {
     const posts = await getPostsWithImages(3);

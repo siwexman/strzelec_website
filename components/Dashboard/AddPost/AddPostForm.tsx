@@ -17,12 +17,12 @@ import ImagesUploader from '@/components/Dashboard/AddPost/ImagesUploader';
 import { useForm } from 'react-hook-form';
 import { userFormSchema } from '@/types/formSchema';
 import { useImageContext } from '@/components/context/ImageContext';
-import { useRouter } from 'next/navigation';
-import uploadPost from '@/store/action/upload';
+import uploadPost from '@/store/action/upload/uploadPost';
+import { useModal } from '@/components/context/ModalContext';
 
 export default function AddPostForm() {
+    const { handleOpen } = useModal();
     const { images } = useImageContext();
-    const router = useRouter();
 
     const form = useForm<z.infer<typeof userFormSchema>>({
         resolver: zodResolver(userFormSchema),
@@ -55,16 +55,22 @@ export default function AddPostForm() {
                 formData.append('images', image.base);
             }
 
-            uploadPost(formData);
+            const modalInfo = await uploadPost(formData);
 
-            router.push('/dashboard');
+            if (true) {
+                handleOpen('correct', 'Post dodany');
+            }
         } catch (err) {
             console.error('Error submitting form:', err);
         }
     }
+    function open() {
+        handleOpen('error', 'Post został dodany!');
+    }
 
     return (
         <Form {...form}>
+            <h2 onClick={open}>open</h2>
             <form onSubmit={form.handleSubmit(handleSubmit)} className="py-4">
                 <FormField
                     control={form.control}

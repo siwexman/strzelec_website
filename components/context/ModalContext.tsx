@@ -1,10 +1,12 @@
 'use client';
+
 import { createContext, useContext, useState } from 'react';
 
 interface ModalContextType {
     isOpen: boolean;
+    modalType: string;
     modalContent: string;
-    handleOpen: (type: string) => void;
+    handleOpen: (type: string, message: string) => void;
     handleClose: () => void;
 }
 
@@ -22,21 +24,23 @@ export function useModal() {
 
 export function ModalProvider(props: { children: JSX.Element }) {
     const [isOpen, setIsOpen] = useState(false);
+    const [modalType, setModalType] = useState('');
     const [modalContent, setModalContent] = useState('');
 
-    function handleOpen(content: string) {
-        setModalContent(content);
+    function handleOpen(content: string, message = '') {
+        setModalType(content);
+        setModalContent(message);
         setIsOpen(true);
     }
 
     function handleClose() {
         setIsOpen(false);
-        setModalContent('');
+        setModalType('');
     }
 
     return (
         <ModalContext.Provider
-            value={{ isOpen, modalContent, handleOpen, handleClose }}
+            value={{ isOpen, modalType, modalContent, handleOpen, handleClose }}
         >
             {props.children}
         </ModalContext.Provider>

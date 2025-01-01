@@ -1,4 +1,4 @@
-import { getPostsWithImages } from '@/store/action/getPosts';
+import { getPostsWithImages } from '@/store/action/get/getPosts';
 
 import LatestNewsItem from './LatestNewsItem';
 

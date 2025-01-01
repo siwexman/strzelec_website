@@ -1,20 +1,30 @@
 'use client';
 
 import { useModal } from '@/components/context/ModalContext';
+
 import CloseIcon from '@/components/Icons/Close';
 import Join from '../Join';
 import Login from '../Login/Login';
+import ModalMessage from './Info/ModalMessage';
 
 export default function Modal() {
-    const { isOpen, handleClose, modalContent } = useModal();
+    const { isOpen, handleClose, modalType, modalContent } = useModal();
 
     if (!isOpen) {
         return null;
     }
 
+    function handleSafeClose() {
+        if (modalType !== 'login') {
+            return;
+        }
+
+        handleClose();
+    }
+
     return (
         <dialog
-            onClick={handleClose}
+            onClick={handleSafeClose}
             className="bg-black05 w-full h-full fixed z-20 top-0 left-0 flex justify-center items-center"
         >
             <div
@@ -23,14 +33,22 @@ export default function Modal() {
             >
                 {/* <div className="w-full flex justify-end"> */}
                 <button
-                    className="absolute top-2 right-2"
+                    className={`absolute top-2 right-2 ${
+                        modalType !== 'login' && 'hidden'
+                    }`}
                     onClick={handleClose}
                 >
                     <CloseIcon />
                 </button>
                 {/* </div> */}
-                {modalContent === 'join' && <Join />}
-                {modalContent === 'login' && <Login />}
+                {/* {modalType === 'join' && <Join />} */}
+                {modalType === 'login' ? (
+                    <Login />
+                ) : (
+                    <ModalMessage content={modalContent} type={modalType} />
+                )}
+                {/* {modalType === 'correct' && <CorrectMessage/>}
+                {modalType === 'error' && <ErrorMessage/>} */}
             </div>
         </dialog>
     );

@@ -6,7 +6,9 @@ import { getSessionUser } from '@/store/action/session';
 import path from 'path';
 import fs from 'fs/promises';
 
-export default async function uploadPost(formData: FormData) {
+export default async function uploadPost(
+    formData: FormData
+): Promise<{ type: string; message: string } | undefined> {
     const user = await getSessionUser();
 
     try {
@@ -74,7 +76,14 @@ export default async function uploadPost(formData: FormData) {
         }
 
         console.log({ post, images: uploadedImages });
+
+        return { type: 'correct', message: 'Post został dodany!' };
     } catch (error) {
         console.log(error);
+
+        return {
+            type: 'error',
+            message: `Wystąpił błąd podczas dodawania postu.\n${error}`,
+        };
     }
 }

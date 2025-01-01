@@ -16,7 +16,9 @@ export default function LatestNewsItem({ post }: { post: PostWithImages }) {
                         sizes="10vw"
                     />
                 </div>
-                <p className="py-2 text-sm my-auto">{post.title}</p>
+                <p className="py-2 px-1 text-sm my-auto uppercase">
+                    {post.title}
+                </p>
             </div>
         </Link>
     );

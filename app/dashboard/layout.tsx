@@ -1,4 +1,4 @@
-import MainDashboardLayout from '@/components/layouts/MainDashboardLayout';
+import MainDashboardLayout from '@/components/Layouts/MainDashboardLayout';
 import { Metadata } from 'next';
 
 export const metadata: Metadata = {
