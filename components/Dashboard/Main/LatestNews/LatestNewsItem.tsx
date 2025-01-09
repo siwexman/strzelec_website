@@ -1,16 +1,34 @@
-import Link from 'next/link';
+'use client';
+
 import Image from 'next/image';
 import { PostWithImages } from '@/types/post';
+import DeleteItem from '../DeleteItem';
+import { deletePost } from '@/store/action/post/deletePost';
+import { useModal } from '@/components/context/ModalContext';
+import { useRouter } from 'next/navigation';
 
 export default function LatestNewsItem({ post }: { post: PostWithImages }) {
+    const { handleOpen } = useModal();
+    const router = useRouter();
+
+    function handleDeletePost() {
+        async function handleDeletePost() {
+            await deletePost(post.id);
+            router.refresh();
+        }
+
+        handleOpen('confirm', '', handleDeletePost);
+    }
+
     return (
-        <Link href={''}>
+        <div className="relative">
+            <DeleteItem handleClick={handleDeletePost} />
             <div className="rounded-sm border h-full grid grid-rows-2">
                 <div className="relative min-h-28">
                     <Image
                         priority
                         src={post.images[0].url}
-                        alt="test"
+                        alt={post.title}
                         fill
                         className="rounded-t-sm"
                         sizes="10vw"
@@ -20,6 +38,6 @@ export default function LatestNewsItem({ post }: { post: PostWithImages }) {
                     {post.title}
                 </p>
             </div>
-        </Link>
+        </div>
     );
 }

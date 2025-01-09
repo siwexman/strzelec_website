@@ -2,7 +2,6 @@ import { zodResolver } from '@hookform/resolvers/zod';
 import * as z from 'zod';
 
 import TiptapEditor from '@/components/Dashboard/TipTapEditor/TiptapEditor';
-import { Button } from '@/components/UI/button';
 import {
     Form,
     FormControl,
@@ -13,14 +12,17 @@ import {
 } from '@/components/UI/form';
 import { Input } from '@/components/UI/input';
 import ImagesUploader from '@/components/Dashboard/AddPost/ImagesUploader';
+import { Button } from '@/components/UI/button';
+import { useFormStatus } from 'react-dom';
 
 import { useForm } from 'react-hook-form';
 import { userFormSchema } from '@/types/formSchema';
 import { useImageContext } from '@/components/context/ImageContext';
-import uploadPost from '@/store/action/upload/uploadPost';
+import uploadPost from '@/store/action/post/uploadPost';
 import { useModal } from '@/components/context/ModalContext';
 
 export default function AddPostForm() {
+    const { pending } = useFormStatus();
     const { handleOpen } = useModal();
     const { images } = useImageContext();
 
@@ -44,7 +46,6 @@ export default function AddPostForm() {
 
             return;
         }
-
         try {
             const formData = new FormData();
 
@@ -57,20 +58,16 @@ export default function AddPostForm() {
 
             const modalInfo = await uploadPost(formData);
 
-            if (true) {
+            if (modalInfo) {
                 handleOpen('correct', 'Post dodany');
             }
         } catch (err) {
             console.error('Error submitting form:', err);
         }
     }
-    function open() {
-        handleOpen('error', 'Post został dodany!');
-    }
 
     return (
         <Form {...form}>
-            <h2 onClick={open}>open</h2>
             <form onSubmit={form.handleSubmit(handleSubmit)} className="py-4">
                 <FormField
                     control={form.control}
@@ -129,10 +126,11 @@ export default function AddPostForm() {
                 <ImagesUploader form={form} />
                 <div className="w-full flex justify-end py-10 relative">
                     <Button
+                        disabled={pending}
                         type="submit"
                         className="bg-green-600 hover:bg-green-400 float-end px-8 font-bold"
                     >
-                        Dodaj post
+                        {pending ? 'Dodawanie...' : 'Dodaj post'}
                     </Button>
                 </div>
             </form>

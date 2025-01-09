@@ -1,7 +1,7 @@
 import Link from 'next/link';
 
-import FacebookIcon from '../../Icons/Facebook';
-import YoutubeIcon from '../../Icons/Youtube';
+import FacebookIcon from '../../UI/Icons/Facebook';
+import YoutubeIcon from '../../UI/Icons/Youtube';
 import UserLogged from './UserLogged';
 
 export default function UnderFooter() {

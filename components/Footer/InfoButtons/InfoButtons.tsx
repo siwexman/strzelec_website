@@ -1,9 +1,9 @@
 import InfoButton from './InfoButton';
 
-import EnvelopeIcon from '../../Icons/Envelope';
-import MapPinIcon from '../../Icons/MapPin';
-import MoneyCheckIcon from '../../Icons/Bank';
-import WatchIcon from '../../Icons/Watch';
+import EnvelopeIcon from '../../UI/Icons/Envelope';
+import MapPinIcon from '../../UI/Icons/MapPin';
+import MoneyCheckIcon from '../../UI/Icons/Bank';
+import WatchIcon from '../../UI/Icons/Watch';
 
 export default function InfoButtons() {
     return (

@@ -1,7 +1,7 @@
 'use client';
 
 import { useRouter } from 'next/navigation';
-import { useModal } from '../../context/ModalContext';
+import { useModal } from '@/components/context/ModalContext';
 import { FormEvent } from 'react';
 import { signIn } from 'next-auth/react';
 

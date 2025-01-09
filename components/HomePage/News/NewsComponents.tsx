@@ -1,9 +1,9 @@
 import NewsItem from './NewsItem';
 
-import { getPostsWithImages } from '@/store/action/get/getPosts';
+import { getPostsWithImage } from '@/store/action/post/getPosts';
 
 export default async function NewsComponents() {
-    const posts = await getPostsWithImages(3);
+    const posts = await getPostsWithImage(3);
 
     return (
         <div className="flex justify-center gap-4 py-4 items-stretch">

@@ -1,7 +1,7 @@
 import Link from 'next/link';
 
 import NewsComponents from './NewsComponents';
-import ArrowRightIcon from '@/components/Icons/ArrowRight';
+import ArrowRightIcon from '@/components/UI/Icons/ArrowRight';
 
 export default function NewsSection() {
     return (

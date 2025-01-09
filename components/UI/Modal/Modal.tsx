@@ -2,13 +2,15 @@
 
 import { useModal } from '@/components/context/ModalContext';
 
-import CloseIcon from '@/components/Icons/Close';
-import Join from '../Join';
-import Login from '../Login/Login';
-import ModalMessage from './Info/ModalMessage';
+import CloseIcon from '@/components/UI/Icons/Close';
+import Join from './Join';
+import Login from './Login/Login';
+import ModalCorrect from './Info/ModalCorrect';
+import Confirm from './Confirm';
 
 export default function Modal() {
-    const { isOpen, handleClose, modalType, modalContent } = useModal();
+    const { isOpen, handleClose, modalType, modalContent, handleConfirm } =
+        useModal();
 
     if (!isOpen) {
         return null;
@@ -31,7 +33,6 @@ export default function Modal() {
                 onClick={e => e.stopPropagation()}
                 className="bg-white p-6 max-w-[500px] min-w-[350px] rounded-xl relative"
             >
-                {/* <div className="w-full flex justify-end"> */}
                 <button
                     className={`absolute top-2 right-2 ${
                         modalType !== 'login' && 'hidden'
@@ -40,15 +41,17 @@ export default function Modal() {
                 >
                     <CloseIcon />
                 </button>
-                {/* </div> */}
-                {/* {modalType === 'join' && <Join />} */}
-                {modalType === 'login' ? (
-                    <Login />
-                ) : (
-                    <ModalMessage content={modalContent} type={modalType} />
+                {modalType === 'join' && <Join />}
+                {modalType === 'login' && <Login />}
+                {modalType === 'confirm' && (
+                    <Confirm
+                        handleConfirm={handleConfirm}
+                        handleClose={handleClose}
+                    />
                 )}
-                {/* {modalType === 'correct' && <CorrectMessage/>}
-                {modalType === 'error' && <ErrorMessage/>} */}
+                {modalType === 'correct' && (
+                    <ModalCorrect content={modalContent} />
+                )}
             </div>
         </dialog>
     );

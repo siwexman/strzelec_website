@@ -1,6 +1,6 @@
 'use client';
-import UserCircleIcon from '../../Icons/UcerCircle';
-import CrownIcon from '../../Icons/Crown';
+import UserCircleIcon from '../../UI/Icons/UcerCircle';
+import CrownIcon from '../../UI/Icons/Crown';
 
 export default function UserLogo() {
     return (

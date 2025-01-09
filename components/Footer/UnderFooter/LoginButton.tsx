@@ -1,7 +1,7 @@
 'use client';
 import { useModal } from '../../context/ModalContext';
 
-import UserIcon from '@/components/Icons/User';
+import UserIcon from '@/components/UI/Icons/User';
 
 export default function LoginButton({}) {
     const { handleOpen } = useModal();

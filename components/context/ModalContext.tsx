@@ -6,8 +6,13 @@ interface ModalContextType {
     isOpen: boolean;
     modalType: string;
     modalContent: string;
-    handleOpen: (type: string, message: string) => void;
+    handleOpen: (
+        type: string,
+        message?: string,
+        onConfirm?: () => void
+    ) => void;
     handleClose: () => void;
+    handleConfirm: () => void;
 }
 
 const ModalContext = createContext<ModalContextType | null>(null);
@@ -26,10 +31,18 @@ export function ModalProvider(props: { children: JSX.Element }) {
     const [isOpen, setIsOpen] = useState(false);
     const [modalType, setModalType] = useState('');
     const [modalContent, setModalContent] = useState('');
+    const [confirmCallback, setConfirmCallback] = useState<(() => void) | null>(
+        null
+    );
 
-    function handleOpen(content: string, message = '') {
+    function handleOpen(
+        content: string,
+        message: string = '',
+        onConfirm?: () => void
+    ) {
         setModalType(content);
         setModalContent(message);
+        setConfirmCallback(() => onConfirm || null);
         setIsOpen(true);
     }
 
@@ -38,9 +51,23 @@ export function ModalProvider(props: { children: JSX.Element }) {
         setModalType('');
     }
 
+    function handleConfirm() {
+        if (confirmCallback) {
+            confirmCallback();
+        }
+        handleClose();
+    }
+
     return (
         <ModalContext.Provider
-            value={{ isOpen, modalType, modalContent, handleOpen, handleClose }}
+            value={{
+                isOpen,
+                modalType,
+                modalContent,
+                handleOpen,
+                handleClose,
+                handleConfirm,
+            }}
         >
             {props.children}
         </ModalContext.Provider>

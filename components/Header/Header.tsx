@@ -3,7 +3,7 @@ import Link from 'next/link';
 
 import logoPanoramic from '../../public/logo_panorama.png';
 import MainNav from './NavBar/MainNav';
-import UserNav from '../UI/UserNav/UserNav';
+import UserNav from '../Dashboard/UserNav/UserNav';
 
 export default function Header() {
     return (

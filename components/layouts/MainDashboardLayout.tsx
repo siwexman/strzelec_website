@@ -1,5 +1,5 @@
 import { ReactNode } from 'react';
-import UserNav from '../UI/UserNav/UserNav';
+import UserNav from '../Dashboard/UserNav/UserNav';
 import { ModalProvider } from '../context/ModalContext';
 import Modal from '../UI/Modal/Modal';
 
