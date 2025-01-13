@@ -6,15 +6,38 @@ import {
     FormLabel,
 } from '@/components/UI/form';
 import { Input } from '@/components/UI/input';
-import ImagePicker from '@/components/Dashboard/AddPost/ImagePicker';
-import { ChangeEvent, useRef } from 'react';
+import ImagePicker from '@/components/Dashboard/PostForm/ImagesUploader/ImagePicker';
+import { ChangeEvent, useEffect, useRef } from 'react';
 import { useImageContext } from '@/components/context/ImageContext';
-import { ImageFile } from '@/types/imageFile';
+import { ImageFile, ImageWithDeleted } from '@/types/imageFile';
 import { imageSchema } from '@/types/formSchema';
+import { UseFormReturn } from 'react-hook-form';
 
-export default function ImagesUploader({ form }) {
-    const { images, addImages } = useImageContext();
+export default function ImagesUploader({
+    form,
+    edit,
+    serverImages,
+}: {
+    form: UseFormReturn<
+        {
+            title: string;
+            summary: string;
+            description: string;
+            images?: ImageFile[];
+        },
+        undefined
+    >;
+    edit?: boolean;
+    serverImages?: ImageWithDeleted[];
+}) {
+    const { images, addImages, setServerImages } = useImageContext();
     const imageInput = useRef<HTMLInputElement | null>(null);
+
+    useEffect(() => {
+        if (serverImages && serverImages?.length > 0) {
+            setServerImages(serverImages);
+        }
+    }, [setServerImages, serverImages]);
 
     function handlePickClick() {
         if (imageInput.current) {
@@ -62,10 +85,11 @@ export default function ImagesUploader({ form }) {
             fileReader.readAsDataURL(file);
         });
     }
+
     return (
         <div className="w-full flex flex-col pt-4">
             <div className="grid grid-cols-3 gap-2 relative items-center">
-                <div className="">
+                <div>
                     <FormField
                         control={form.control}
                         name="images"
@@ -98,16 +122,31 @@ export default function ImagesUploader({ form }) {
                     </Button>
                 </div>
                 <div className="col-span-2 relative py-2">
-                    <FormLabel htmlFor="images" className="font-semibold">
+                    <FormLabel
+                        htmlFor="images"
+                        className={`font-semibold ${
+                            form.formState.errors.images && 'text-red-500'
+                        }`}
+                    >
                         Twoje zdjęcia
                     </FormLabel>
-                    <ImagePicker pickedImages={images} />
-
-                    <div className="bg-yellow-300 text-sm rounded-lg absolute bottom-0 translate-x-1/2">
-                        <p className="px-2">
-                            Pierwsze zdjęcie będzie zdjęciem głównym postu!
+                    <ImagePicker
+                        pickedImages={images}
+                        serverImages={serverImages}
+                    />
+                    {form.formState.errors.images && (
+                        <p className="text-sm text-red-500">
+                            {form.formState.errors.images.message}
                         </p>
-                    </div>
+                    )}
+
+                    {!edit && (
+                        <div className="bg-yellow-300 text-sm rounded-lg absolute bottom-0 translate-x-1/2">
+                            <p className="px-2">
+                                Pierwsze zdjęcie będzie zdjęciem głównym postu!
+                            </p>
+                        </div>
+                    )}
                 </div>
             </div>
         </div>

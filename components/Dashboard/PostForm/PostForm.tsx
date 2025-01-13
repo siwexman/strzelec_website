@@ -1,5 +1,12 @@
 import { zodResolver } from '@hookform/resolvers/zod';
 import * as z from 'zod';
+import { useForm } from 'react-hook-form';
+import { useFormStatus } from 'react-dom';
+
+import { ImageWithDeleted } from '@/types/imageFile';
+import { userFormSchema } from '@/types/formSchema';
+
+import uploadPost from '@/store/action/post/upload/uploadPost';
 
 import TiptapEditor from '@/components/Dashboard/TipTapEditor/TiptapEditor';
 import {
@@ -11,39 +18,56 @@ import {
     FormMessage,
 } from '@/components/UI/form';
 import { Input } from '@/components/UI/input';
-import ImagesUploader from '@/components/Dashboard/AddPost/ImagesUploader';
+import ImagesUploader from '@/components/Dashboard/PostForm/ImagesUploader/ImagesUploader';
 import { Button } from '@/components/UI/button';
-import { useFormStatus } from 'react-dom';
-
-import { useForm } from 'react-hook-form';
-import { userFormSchema } from '@/types/formSchema';
 import { useImageContext } from '@/components/context/ImageContext';
-import uploadPost from '@/store/action/post/uploadPost';
 import { useModal } from '@/components/context/ModalContext';
+import { editPost } from '@/store/action/post/edit/editPost';
+import { deleteImage } from '@/store/action/image/deleteImage';
 
-export default function AddPostForm() {
+export default function PostForm({
+    title = '',
+    summary = '',
+    description = '',
+    serverImages = [],
+    editId,
+}: {
+    title?: string;
+    summary?: string;
+    description?: string;
+    serverImages?: ImageWithDeleted[];
+    editId?: number;
+}) {
     const { pending } = useFormStatus();
     const { handleOpen } = useModal();
-    const { images } = useImageContext();
+    const { images, serverUploadedImages } = useImageContext();
 
     const form = useForm<z.infer<typeof userFormSchema>>({
         resolver: zodResolver(userFormSchema),
         mode: 'onChange',
         defaultValues: {
-            title: '',
-            summary: '',
-            description: '',
+            title: title,
+            summary: summary,
+            description: description,
             images: [],
         },
     });
 
     async function handleSubmit(values: z.infer<typeof userFormSchema>) {
-        if (images.length === 0) {
-            form.setError('images', {
-                type: 'custom',
-                message: 'Nie przesłano żadnych zdjęć',
-            });
-
+        if (serverImages.length === 0 && images.length === 0) {
+            form.setError(
+                'images',
+                {
+                    type: 'custom',
+                    message: 'Nie przesłano żadnych zdjęć',
+                    types: {
+                        required: 'Nie przesłano zdjęcia',
+                    },
+                },
+                { shouldFocus: true }
+            );
+            console.log('error');
+            console.log(form.formState.errors.images);
             return;
         }
         try {
@@ -56,10 +80,48 @@ export default function AddPostForm() {
                 formData.append('images', image.base);
             }
 
-            const modalInfo = await uploadPost(formData);
+            if (!editId) {
+                // upload new post
+                const modalInfo = await uploadPost(formData);
 
-            if (modalInfo) {
-                handleOpen('correct', 'Post dodany');
+                if (modalInfo) {
+                    handleOpen(modalInfo.type, modalInfo.message);
+                }
+            } else {
+                // edit post
+                const deletedServerImages = serverUploadedImages.filter(
+                    img => img.isDeleted
+                );
+
+                if (
+                    deletedServerImages.length ===
+                        serverUploadedImages.length &&
+                    images.length === 0
+                ) {
+                    form.setError(
+                        'images',
+                        {
+                            type: 'custom',
+                            message:
+                                'Musi być przynajmniej jedno zdjęcie w poście',
+                        },
+                        { shouldFocus: true }
+                    );
+
+                    return;
+                }
+
+                for (const img of serverUploadedImages) {
+                    if (img.isDeleted) {
+                        await deleteImage(img.id);
+                    }
+                }
+
+                const modalInfo = await editPost(formData, editId);
+
+                if (modalInfo) {
+                    handleOpen(modalInfo.type, modalInfo.message);
+                }
             }
         } catch (err) {
             console.error('Error submitting form:', err);
@@ -117,20 +179,31 @@ export default function AddPostForm() {
                                 <TiptapEditor
                                     description={field.name}
                                     onChange={field.onChange}
+                                    content={description}
                                 />
                             </FormControl>
                             <FormMessage />
                         </FormItem>
                     )}
                 />
-                <ImagesUploader form={form} />
+                <ImagesUploader
+                    form={form}
+                    edit={!!editId}
+                    serverImages={serverImages}
+                />
                 <div className="w-full flex justify-end py-10 relative">
                     <Button
                         disabled={pending}
                         type="submit"
                         className="bg-green-600 hover:bg-green-400 float-end px-8 font-bold"
                     >
-                        {pending ? 'Dodawanie...' : 'Dodaj post'}
+                        {pending
+                            ? editId
+                                ? 'Aktualizowanie'
+                                : 'Dodawanie...'
+                            : editId
+                            ? 'Zaktualizuj post'
+                            : 'Dodaj post'}
                     </Button>
                 </div>
             </form>

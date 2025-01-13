@@ -30,7 +30,6 @@ export default function Pagination({
 
         const sortedPagination = [...new Set(pagination)];
 
-        // return [...new Set(pagination)].sort((a, b) => a - b);
         const result: (string | number)[] = [];
         sortedPagination.forEach((page, index, array) => {
             if (index > 0 && page - array[index - 1] > 1) {
@@ -38,7 +37,7 @@ export default function Pagination({
             }
             result.push(page);
         });
-        console.log(result);
+
         return result;
     }
 

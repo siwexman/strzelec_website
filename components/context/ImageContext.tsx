@@ -1,16 +1,22 @@
-import { createContext, useContext, useState } from 'react';
-import { ImageFile } from '@/types/imageFile';
+import { createContext, useCallback, useContext, useState } from 'react';
+import { ImageFile, ImageWithDeleted } from '@/types/imageFile';
 
 interface ImageContextProps {
     images: ImageFile[];
+    serverUploadedImages: ImageWithDeleted[];
     addImages: (newImages: ImageFile[]) => void;
     removeImage: (name: string) => void;
+    setServerImages: (images: ImageWithDeleted[]) => void;
+    togglePropertyServerImage: (id: number) => void;
 }
 
 const ImageContext = createContext<ImageContextProps | undefined>(undefined);
 
 export function ImageProvider(props: { children: JSX.Element }) {
     const [images, setImages] = useState<ImageFile[]>([]);
+    const [serverUploadedImages, setServerUploadedImages] = useState<
+        ImageWithDeleted[]
+    >([]);
 
     function addImages(images: ImageFile[]) {
         setImages(prevState => {
@@ -30,8 +36,32 @@ export function ImageProvider(props: { children: JSX.Element }) {
         );
     }
 
+    // server Images
+    const setServerImages = useCallback((images: ImageWithDeleted[]) => {
+        setServerUploadedImages(images);
+    }, []);
+
+    function togglePropertyServerImage(id: number) {
+        setServerUploadedImages(prevState => {
+            const updatedImages = prevState.map(img =>
+                img.id === id ? { ...img, isDeleted: !img.isDeleted } : img
+            );
+
+            return updatedImages;
+        });
+    }
+
     return (
-        <ImageContext.Provider value={{ images, addImages, removeImage }}>
+        <ImageContext.Provider
+            value={{
+                images,
+                serverUploadedImages,
+                addImages,
+                removeImage,
+                setServerImages,
+                togglePropertyServerImage,
+            }}
+        >
             {props.children}
         </ImageContext.Provider>
     );

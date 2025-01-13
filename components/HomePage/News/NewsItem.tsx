@@ -7,7 +7,7 @@ export default function NewsItem({ post }: { post: PostWithImages }) {
     return (
         <Link href={''} className="p-2 w-full">
             <div className="px-4 py-2 h-full">
-                <div className="border rounded-t-2xl shadow flex flex-col h-full">
+                <div className="border rounded-t-2xl rounded-b-lg shadow flex flex-col h-full">
                     <div className="relative min-h-60">
                         <Image
                             priority
@@ -15,7 +15,7 @@ export default function NewsItem({ post }: { post: PostWithImages }) {
                             src={post.images[0].url}
                             alt={post.title}
                             fill
-                            sizes="100vw"
+                            sizes="50vw"
                         />
                     </div>
                     <div className="py-4 px-2 text-center">

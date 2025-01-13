@@ -45,6 +45,7 @@ export default function Modal() {
                 {modalType === 'login' && <Login />}
                 {modalType === 'confirm' && (
                     <Confirm
+                        content={modalContent}
                         handleConfirm={handleConfirm}
                         handleClose={handleClose}
                     />

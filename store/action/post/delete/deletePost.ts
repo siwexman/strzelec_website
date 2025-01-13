@@ -17,6 +17,10 @@ export async function deletePost(postID: number) {
         postID.toString()
     );
 
-    fs.access(folderPath);
+    try {
+        fs.access(folderPath);
+    } catch (error) {
+        return { message: `Can't find path ${error}` };
+    }
     await fs.rm(folderPath, { recursive: true, force: true });
 }

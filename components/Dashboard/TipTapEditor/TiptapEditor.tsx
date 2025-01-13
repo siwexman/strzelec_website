@@ -8,10 +8,12 @@ import Toolbar from './Toolbar';
 
 export default function TiptapEditor(props: {
     description: string;
+    content?: string;
     onChange: (richText: string) => void;
 }) {
     const editor = useEditor({
         immediatelyRender: false,
+        content: props.content,
         extensions: [
             StarterKit.configure({
                 heading: {

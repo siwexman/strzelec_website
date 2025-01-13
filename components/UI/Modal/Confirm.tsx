@@ -1,14 +1,16 @@
 export default function Confirm({
+    content,
     handleConfirm,
     handleClose,
 }: {
+    content: string;
     handleConfirm: () => void;
     handleClose: () => void;
 }) {
     return (
         <div className="p-2">
             <h3 className="font-bold text-xl pb-4">
-                Czy na pewno chcesz usunąć post?
+                Czy na pewno chcesz usunąć {content}?
             </h3>
             <div className="py-4 flex justify-around">
                 <button

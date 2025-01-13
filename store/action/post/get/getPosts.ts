@@ -1,6 +1,6 @@
 import { prisma } from '@/lib/prisma';
 
-export async function getPostsWithImage(quantity: number) {
+export async function getPostsWithMainImage(quantity: number) {
     const posts = await prisma.post.findMany({
         take: quantity,
         include: {

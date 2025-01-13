@@ -1,4 +1,4 @@
-import { ImageFile } from './imageFile';
+import { Image, ImageFile } from './imageFile';
 
 export type Post = {
     title: string;
@@ -15,16 +15,16 @@ export type UploadedPost = {
 };
 
 export type PostWithImages = {
-    images: {
-        id: number;
-        url: string;
-        postId: number;
-    }[];
+    images: Image[];
 } & {
-    summary: string;
-    title: string;
     id: number;
-    date: Date;
+    title: string;
+    summary: string;
     description: string;
+    date: Date;
     authorId: number;
 };
+
+export interface PostsPageProps {
+    params: { page: string };
+}
