@@ -36,3 +36,10 @@ model Image{
     postId Int
     post Post @relation(fields: [postId], references: [id], onDelete: Cascade)
 }
+
+model Magazine{
+    id Int @id @default(autoincrement())
+    url String
+    issue String // number of magazine yyyy/number i.e. 2020/01
+    imgUrl String
+}

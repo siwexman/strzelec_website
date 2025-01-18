@@ -5,8 +5,8 @@ import { useModal } from '@/components/context/ModalContext';
 import CloseIcon from '@/components/UI/Icons/Close';
 import Join from './Join';
 import Login from './Login/Login';
-import ModalCorrect from './Info/ModalCorrect';
 import Confirm from './Confirm';
+import ModalInfo from './Info/ModalInfo';
 
 export default function Modal() {
     const { isOpen, handleClose, modalType, modalContent, handleConfirm } =
@@ -50,8 +50,12 @@ export default function Modal() {
                         handleClose={handleClose}
                     />
                 )}
-                {modalType === 'correct' && (
-                    <ModalCorrect content={modalContent} />
+                {(modalType === 'correct' || modalType === 'error') && (
+                    <ModalInfo
+                        type={modalType}
+                        content={modalContent}
+                        handleModalClose={handleClose}
+                    />
                 )}
             </div>
         </dialog>

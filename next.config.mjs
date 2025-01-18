@@ -8,6 +8,11 @@ const nextConfig = {
 
         return config;
     },
+    experimental: {
+        serverActions: {
+            bodySizeLimit: '15mb',
+        },
+    },
 };
 
 export default nextConfig;

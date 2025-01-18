@@ -1,7 +1,7 @@
 import { zodResolver } from '@hookform/resolvers/zod';
 import * as z from 'zod';
+import { useState } from 'react';
 import { useForm } from 'react-hook-form';
-import { useFormStatus } from 'react-dom';
 
 import { ImageWithDeleted } from '@/types/imageFile';
 import { userFormSchema } from '@/types/formSchema';
@@ -38,9 +38,9 @@ export default function PostForm({
     serverImages?: ImageWithDeleted[];
     editId?: number;
 }) {
-    const { pending } = useFormStatus();
     const { handleOpen } = useModal();
     const { images, serverUploadedImages } = useImageContext();
+    const [isPending, setIsPending] = useState(false);
 
     const form = useForm<z.infer<typeof userFormSchema>>({
         resolver: zodResolver(userFormSchema),
@@ -54,6 +54,7 @@ export default function PostForm({
     });
 
     async function handleSubmit(values: z.infer<typeof userFormSchema>) {
+        setIsPending(true);
         if (serverImages.length === 0 && images.length === 0) {
             form.setError(
                 'images',
@@ -125,6 +126,8 @@ export default function PostForm({
             }
         } catch (err) {
             console.error('Error submitting form:', err);
+        } finally {
+            setIsPending(false);
         }
     }
 
@@ -193,11 +196,11 @@ export default function PostForm({
                 />
                 <div className="w-full flex justify-end py-10 relative">
                     <Button
-                        disabled={pending}
+                        disabled={isPending}
                         type="submit"
                         className="bg-green-600 hover:bg-green-400 float-end px-8 font-bold"
                     >
-                        {pending
+                        {isPending
                             ? editId
                                 ? 'Aktualizowanie'
                                 : 'Dodawanie...'

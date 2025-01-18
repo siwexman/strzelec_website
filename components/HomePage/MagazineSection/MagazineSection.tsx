@@ -1,19 +1,12 @@
 import Link from 'next/link';
-import Image from 'next/image';
 
-import frontPage from '@/public/2020.png';
+import MagazineItem from './MagazineItem';
 
 export default function MagazineSection() {
     return (
         <section className="py-8 w-full max-w-maxWidth mx-auto">
             <div className="py-4 px-4 flex justify-center gap-8 w-2/3 mx-auto">
-                <div>
-                    <Image
-                        className="rounded"
-                        src={frontPage}
-                        alt="Okładka czasopisma"
-                    />
-                </div>
+                <MagazineItem />
                 <div className="w-full px-4 py-2 flex flex-col justify-between">
                     <div>
                         <h2 className="pb-4">
