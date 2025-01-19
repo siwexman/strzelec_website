@@ -1,4 +1,4 @@
-import { getMagazineLatest } from '@/store/action/magazine/getMagazine';
+import { getMagazineLatest } from '@/store/action/magazine/get/getMagazine';
 import Image from 'next/image';
 
 export default async function MagazineItem() {

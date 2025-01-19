@@ -6,7 +6,7 @@ import { useForm } from 'react-hook-form';
 
 import { useModal } from '@/components/context/ModalContext';
 import { magazineFormSchema, MagazineType } from '@/types/formSchema';
-import { uploadMagazine } from '@/store/action/magazine/uploadMagazine';
+import { uploadMagazine } from '@/store/action/magazine/upload/uploadMagazine';
 
 import { Button } from '@/components/UI/button';
 import {

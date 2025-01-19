@@ -4,7 +4,7 @@ import { prisma } from '@/lib/prisma';
 import fs from 'fs/promises';
 import path from 'path';
 import { convertPdfToImage } from './pdfConverter';
-import { getMagazine } from './getMagazine';
+import { getMagazine } from '../get/getMagazine';
 
 export async function uploadMagazine(
     magazine: Uint8Array,
