@@ -1,20 +1,31 @@
+import * as motion from 'motion/react-client';
 import Link from 'next/link';
 
 export default function DashboardBtn({
     content,
     link,
-    className,
+    isDisabled,
 }: {
     content: string;
     link: string;
-    className?: string;
+    isDisabled?: boolean;
 }) {
+    if (isDisabled) {
+        return (
+            <div className="text-center py-2 px-4 border-2 border-black border-dashed bg-gray-600 rounded-xl text-white font-semibold">
+                <p>Przekroczono limit</p>
+            </div>
+        );
+    }
+
     return (
-        <Link
-            href={link}
-            className={`py-2 text-center rounded-xl border-2 bg-slate-400 text-white font-semibold hover:-translate-x-1 hover:-translate-y-1 transition-all ${className}`}
-        >
-            {content}
+        <Link href={link}>
+            <motion.div
+                whileHover={{ x: -5, y: -5 }}
+                className="py-2 px-4 text-center rounded-xl border-2 bg-slate-400 text-white font-semibold"
+            >
+                {content}
+            </motion.div>
         </Link>
     );
 }

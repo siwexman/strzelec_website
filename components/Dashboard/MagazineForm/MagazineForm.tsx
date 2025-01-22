@@ -20,7 +20,6 @@ import {
 import { Input } from '@/components/UI/input';
 
 export default function MagazineForm() {
-    // TODO: modal zrobic
     const { handleOpen } = useModal();
     const [isPending, setIsPending] = useState(false);
 

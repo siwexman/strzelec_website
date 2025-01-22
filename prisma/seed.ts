@@ -30,6 +30,12 @@ async function main() {
                 role: 'Master',
             },
         });
+
+        await prisma.counter.create({
+            data: {
+                lastResetDate: new Date().toISOString().split('T')[0],
+            },
+        });
         console.log('Initial user created');
     } else {
         console.log('User already exists');

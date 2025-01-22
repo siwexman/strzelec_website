@@ -32,7 +32,17 @@ export async function uploadMagazine(
         await fs.writeFile(filePath, buffer);
 
         // convertion pdf (first page) -> img
-        await convertPdfToImage(filePath, fileName, singleMagazineDir);
+        const resultConvert = await convertPdfToImage(
+            filePath,
+            fileName,
+            singleMagazineDir
+        );
+
+        if (!resultConvert) {
+            throw new Error(
+                'There was an error or credits are 0. Try next day'
+            );
+        }
 
         await prisma.magazine.create({
             data: {
@@ -45,6 +55,9 @@ export async function uploadMagazine(
         return { type: 'correct', message: 'Czasopismo dodane pomyślnie' };
     } catch (error) {
         console.log(error);
-        return { type: 'error', message: 'Dodawanie nie powiodło się :(' };
+        return {
+            type: 'error',
+            message: `Dodawanie nie powiodło się :(\n${error}`,
+        };
     }
 }

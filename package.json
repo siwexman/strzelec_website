@@ -28,6 +28,7 @@
         "cloudconvert": "^2.3.7",
         "clsx": "^2.1.1",
         "lucide-react": "^0.456.0",
+        "motion": "^11.18.1",
         "nanoid": "^5.0.9",
         "next": "^14.2.15",
         "next-auth": "^4.24.10",

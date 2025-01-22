@@ -2,11 +2,12 @@ import Image from 'next/image';
 import Link from 'next/link';
 
 import { PostWithImages } from '@/types/post';
+import DateCalendar from './DateCalendar';
 
 export default function NewsItem({ post }: { post: PostWithImages }) {
     return (
-        <Link href={''} className="p-2 w-full">
-            <div className="px-4 py-2 h-full">
+        <Link href={''} className="p-2">
+            <div className="px-4 py-2 h-full max-w-[400px] relative">
                 <div className="border rounded-t-2xl rounded-b-lg shadow flex flex-col h-full">
                     <div className="relative min-h-60">
                         <Image
@@ -26,6 +27,7 @@ export default function NewsItem({ post }: { post: PostWithImages }) {
                         <p className="text-balance pt-2">{post.summary}</p>
                     </div>
                 </div>
+                <DateCalendar date={post.date.toISOString().split('T')[0]} />
             </div>
         </Link>
     );

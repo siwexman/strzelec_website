@@ -7,10 +7,9 @@ export default async function MagazineItem() {
     if (!magazine) {
         return;
     }
-    console.log(magazine);
+
     const imgSrc = magazine.imgUrl;
 
-    console.log(imgSrc);
     return (
         <div className="relative w-1/3">
             <Image

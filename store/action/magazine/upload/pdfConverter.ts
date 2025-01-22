@@ -5,6 +5,7 @@ import fs from 'fs';
 import https from 'https';
 import path from 'path';
 import { env } from 'process';
+import { decrementCounterConverter } from './counterConverterCredits';
 
 const cloudConvert = new CloudConvert(env.API_KEY_PDF_CONVERTER || '');
 
@@ -77,7 +78,13 @@ export async function convertPdfToImage(
             writeStream.on('finish', resolve);
             writeStream.on('error', reject);
         });
+
+        const counter = await decrementCounterConverter();
+
+        return { message: `Success! Counter: ${counter?.counter}` };
     } catch (error) {
         console.log(error);
+
+        return;
     }
 }

@@ -43,3 +43,9 @@ model Magazine{
     issue String // number of magazine yyyy/number i.e. 2020/01
     imgUrl String
 }
+
+model Counter {
+    id Int @id @default(autoincrement())
+    counter Int @default(10)
+    lastResetDate String
+}
