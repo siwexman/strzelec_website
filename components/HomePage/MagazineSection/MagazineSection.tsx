@@ -1,4 +1,5 @@
 import Link from 'next/link';
+import * as motion from 'motion/react-client';
 
 import MagazineItem from './MagazineItem';
 
@@ -22,9 +23,15 @@ export default function MagazineSection() {
                     </div>
 
                     <Link href={''}>
-                        <p className="mt-2 p-4 border border-slate-600 rounded-lg w-full text-center text-lg font-semibold">
-                            Czasopismo &quot;Strzelec&quot;
-                        </p>
+                        <motion.div
+                            whileHover={{
+                                scale: 1.1,
+                            }}
+                        >
+                            <p className="mt-2 p-4 border border-slate-600 rounded-lg w-full text-center text-lg font-semibold">
+                                Czasopismo &quot;Strzelec&quot;
+                            </p>
+                        </motion.div>
                     </Link>
                 </div>
             </div>

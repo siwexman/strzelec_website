@@ -1,4 +1,3 @@
-// TODO: function for date to display
 const months = [
     'styczeń',
     'luty',

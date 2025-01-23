@@ -11,7 +11,7 @@ export default async function MagazineItem() {
     const imgSrc = magazine.imgUrl;
 
     return (
-        <div className="relative w-1/3">
+        <div className="relative w-1/4">
             <Image
                 className="rounded"
                 src={imgSrc}
