@@ -1,12 +1,14 @@
+import {heroui} from '@heroui/theme';
 import type { Config } from 'tailwindcss';
 
 const config: Config = {
     darkMode: ['class'],
-    content: [
-        './pages/**/*.{js,ts,jsx,tsx,mdx}',
-        './components/**/*.{js,ts,jsx,tsx,mdx}',
-        './app/**/*.{js,ts,jsx,tsx,mdx}',
-    ],
+  content: [
+    "./pages/**/*.{js,ts,jsx,tsx,mdx}",
+    "./components/**/*.{js,ts,jsx,tsx,mdx}",
+    "./app/**/*.{js,ts,jsx,tsx,mdx}",
+    "./node_modules/@heroui/theme/dist/components/pagination.js"
+  ],
     theme: {
     	extend: {
     		backgroundColor: {
@@ -24,6 +26,5 @@ const config: Config = {
     		colors: {}
     	}
     },
-    plugins: [require("tailwindcss-animate")]
-};
+  plugins: [require("tailwindcss-animate"),heroui()]};
 export default config;

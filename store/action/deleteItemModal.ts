@@ -1,3 +1,4 @@
+// import { revalidatePath } from 'next/cache';
 import { AppRouterInstance } from 'next/dist/shared/lib/app-router-context.shared-runtime';
 
 export function deleteItemModal(
@@ -13,6 +14,7 @@ export function deleteItemModal(
 ) {
     async function handleDelete() {
         await handleDeleteItem(id);
+        // revalidatePath('')
         router.refresh();
     }
 

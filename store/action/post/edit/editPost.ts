@@ -23,7 +23,11 @@ export async function editPost(formData: FormData, postId: number) {
             },
         });
 
-        const pathFile = path.join(process.cwd(), 'public/uploads/gallery/99');
+        const pathFile = path.join(
+            process.cwd(),
+            'public/uploads/gallery',
+            postId.toString()
+        );
         const exisitingFiles = await fs.readdir(pathFile);
 
         console.log(exisitingFiles);

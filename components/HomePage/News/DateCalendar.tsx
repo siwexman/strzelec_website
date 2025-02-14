@@ -5,8 +5,6 @@ export default function DateCalendar({ date }: { date: string }) {
     const currentYear = new Date().getFullYear();
     const [year, month, day] = date.split('-');
 
-    console.log(parseInt(month));
-
     return (
         <div className="absolute -top-1 left-2">
             <CalendarIcon />

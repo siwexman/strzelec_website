@@ -1,7 +1,7 @@
 import Image from 'next/image';
 import { Bebas_Neue } from 'next/font/google';
 
-import image from '@/public/Lis-Kula.jpg';
+import image from '@/assets/Lis-Kula.jpg';
 
 const bebas = Bebas_Neue({
     subsets: ['latin'],

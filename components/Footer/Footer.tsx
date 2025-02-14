@@ -1,6 +1,6 @@
 import Image from 'next/image';
 
-import logoZS from '../../public/LogoZSStrzelec.png';
+import logoZS from '../../assets/LogoZSStrzelec.png';
 import InfoButtons from './InfoButtons/InfoButtons';
 import UnderFooter from './UnderFooter/UnderFooter';
 

@@ -1,10 +1,10 @@
-import akImg from '@/public/partners/ak.png';
-import kombatantImg from '@/public/partners/kombatant.jpg';
-import monImg from '@/public/partners/mon.png';
-import podkarpackieImg from '@/public/partners/podkarpackie.png';
-import ropsImg from '@/public/partners/rops.png';
-import stolicaInnowacjiImg from '@/public/partners/stolica-innowacji.jpg';
-import towPrzyjaciolImg from '@/public/partners/tow-przyjaciol.png';
+import akImg from '@/assets/partners/ak.png';
+import kombatantImg from '@/assets/partners/kombatant.jpg';
+import monImg from '@/assets/partners/mon.png';
+import podkarpackieImg from '@/assets/partners/podkarpackie.png';
+import ropsImg from '@/assets/partners/rops.png';
+import stolicaInnowacjiImg from '@/assets/partners/stolica-innowacji.jpg';
+import towPrzyjaciolImg from '@/assets/partners/tow-przyjaciol.png';
 
 import { StaticImageData } from 'next/image';
 

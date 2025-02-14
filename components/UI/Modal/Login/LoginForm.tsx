@@ -1,5 +1,3 @@
-'use client';
-
 import { useRouter } from 'next/navigation';
 import { useModal } from '@/components/context/ModalContext';
 import { FormEvent } from 'react';
@@ -23,8 +21,8 @@ export default function LoginForm() {
 
         if (!response?.error) {
             handleClose();
+
             router.push('/dashboard');
-            router.refresh();
         }
     }
 

@@ -1,6 +1,7 @@
 'use server';
 
 import xss from 'xss';
+import slugify from 'slugify';
 import { prisma } from '@/lib/prisma';
 
 import { getSessionUser } from '@/store/action/session';
@@ -27,6 +28,7 @@ export default async function uploadPost(
                 description: xss(uploadedPost.description),
                 authorId: user.id,
                 date: new Date(),
+                slug: slugify(uploadedPost.title, { lower: true }),
             },
         });
 

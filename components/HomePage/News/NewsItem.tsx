@@ -9,7 +9,7 @@ export default function NewsItem({ post }: { post: PostWithImages }) {
         <Link href={''} className="p-2">
             <div className="px-4 py-2 h-full max-w-[400px] relative">
                 <div className="border rounded-t-2xl rounded-b-lg shadow flex flex-col h-full">
-                    <div className="relative min-h-60">
+                    <div className="relative min-h-48">
                         <Image
                             priority
                             className="rounded-t-2xl"

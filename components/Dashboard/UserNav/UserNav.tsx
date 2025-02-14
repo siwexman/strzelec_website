@@ -19,9 +19,9 @@ export default async function UserNav() {
                 <div className="flex">
                     <UserLogo />
                     <p className="text-lg my-auto px-4">{user.name}</p>
-                    <Link href={'/'} className="flex mx-4">
+                    <a href={'/'} className="flex mx-4">
                         <HomeIcon className="my-auto" />
-                    </Link>
+                    </a>
                 </div>
                 <div className="flex gap-4">
                     <Link href={'/dashboard'} className="my-auto text-md p-2">

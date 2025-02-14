@@ -23,6 +23,7 @@ model Post{
     summary String
     description String // on get convert to html (example string <p>something</p>)
     date DateTime
+    slug String
     author User @relation(fields: [authorId], references: [id])
     authorId Int
     images Image[]
