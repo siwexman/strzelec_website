@@ -40,6 +40,8 @@ export function ModalProvider(props: { children: JSX.Element }) {
         message: string = '',
         onConfirm?: () => void
     ) {
+        document.querySelector('body')?.style.setProperty('overflow', 'hidden');
+
         setModalType(content);
         setModalContent(message);
         setConfirmCallback(() => onConfirm || null);
@@ -47,6 +49,8 @@ export function ModalProvider(props: { children: JSX.Element }) {
     }
 
     function handleClose() {
+        document.querySelector('body')?.style.setProperty('overflow', 'auto');
+
         setIsOpen(false);
         setModalType('');
     }

@@ -1,9 +1,10 @@
 import { Metadata } from 'next';
 
-import { Lato } from 'next/font/google';
+import { Roboto } from 'next/font/google';
 import './globals.css';
+import { Suspense } from 'react';
 
-const lato = Lato({
+const roboto = Roboto({
     subsets: ['latin'],
     weight: ['400', '700'],
 });
@@ -20,7 +21,7 @@ export default function RootLayout({
 }>) {
     return (
         <html lang="pl">
-            <body className={lato.className}>{children}</body>
+            <body className={roboto.className}>{children}</body>
         </html>
     );
 }

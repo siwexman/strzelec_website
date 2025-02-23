@@ -12,7 +12,7 @@ export default function DashboardBtn({
 }) {
     if (isDisabled) {
         return (
-            <div className="text-center py-2 px-4 border-2 border-black border-dashed bg-gray-600 rounded-xl text-white font-semibold">
+            <div className="py-2 px-4 text-center rounded-xl border-2 border-gray-300 bg-slate-400 text-gray-300 font-semibold">
                 <p>Przekroczono limit</p>
             </div>
         );

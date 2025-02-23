@@ -27,7 +27,7 @@ export default function InfoButton({
                     padding: isOpen ? '0 1rem' : '0px',
                     opacity: isOpen ? 100 : 0,
                 }}
-                className="overflow-hidden my-auto whitespace-nowrap"
+                className="overflow-hidden my-auto whitespace-nowrap max-w-0"
             >
                 {children}
             </motion.div>

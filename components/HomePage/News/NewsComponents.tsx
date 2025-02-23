@@ -6,7 +6,7 @@ export default async function NewsComponents() {
     const posts = await getPostsWithMainImage(3);
 
     return (
-        <div className="flex justify-center gap-4 py-4 items-stretch">
+        <div className="grid grid-cols-3 gap-4 py-4 items-stretch">
             {posts.map(post => (
                 <NewsItem key={post.id} post={post} />
             ))}

@@ -5,12 +5,13 @@ import { PostWithImages } from '@/types/post';
 import Image from 'next/image';
 import { useRouter } from 'next/navigation';
 
-import { deleteItemModal } from '@/store/action/deleteItemModal';
+import { deleteItemModal } from '@/store/action/modal/deleteItemModal';
 import { deletePost } from '@/store/action/post/delete/deletePost';
 import { useModal } from '@/components/context/ModalContext';
 
-import ActionButton from './ActionButton';
+import ActionButton from '../UI/Buttons/ActionButton';
 import Link from 'next/link';
+import DateCalendar from '../HomePage/News/DateCalendar';
 
 export default function PostItem({
     post,
@@ -23,7 +24,7 @@ export default function PostItem({
     const router = useRouter();
 
     return (
-        <div className="border rounded hover:border-slate-700 transition-all">
+        <div className="relative border rounded hover:border-slate-700 transition-all">
             <div className="grid grid-cols-6 h-full">
                 <div className="relative col-span-2 h-full">
                     <Image
@@ -46,7 +47,9 @@ export default function PostItem({
                             <ActionButton
                                 content="Pokaż całą treść"
                                 action="read"
-                                handleAction={() => router.push('/')} // slug to post page
+                                handleAction={() =>
+                                    router.push(`/aktualnosci/${post.slug}`)
+                                }
                             />
                             <ActionButton
                                 content="Edytuj"
@@ -72,7 +75,7 @@ export default function PostItem({
                     ) : (
                         <div className="text-right py-4 px-2">
                             <Link
-                                href={''}
+                                href={`aktualnosci/${post.slug}`}
                                 className="py-2 px-4 text-lg font-semibold bg-slate-200 rounded-lg border border-slate-600 hover:bg-slate-600 hover:text-white transition-all"
                             >
                                 Czytaj dalej
@@ -81,6 +84,7 @@ export default function PostItem({
                     )}
                 </div>
             </div>
+            <DateCalendar date={post.date} isHomePage />
         </div>
     );
 }

@@ -1,12 +1,13 @@
+import LayoutDashboardItems from '@/components/Layouts/LayoutDashboardItems';
+
 export default function DashboardPostsLayout({
     children,
 }: Readonly<{
     children: React.ReactNode;
 }>) {
     return (
-        <div>
-            <h2 className="text-center py-4 mb-4">Wszystkie aktualności</h2>
+        <LayoutDashboardItems title="Wszystkie aktualności">
             {children}
-        </div>
+        </LayoutDashboardItems>
     );
 }

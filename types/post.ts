@@ -22,6 +22,7 @@ export type PostWithImages = {
     summary: string;
     description: string;
     date: Date;
+    slug: string;
     authorId: number;
 };
 

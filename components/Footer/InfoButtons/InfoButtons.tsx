@@ -13,7 +13,10 @@ export default function InfoButtons() {
     const [openIndex, setOpenIndex] = useState<number | null>(null);
 
     const buttons = [
-        { icon: <EnvelopeIcon />, content: <p>strzelec@op.pl</p> },
+        {
+            icon: <EnvelopeIcon />,
+            content: <a href="mailto:strzelec@op.pl">strzelec@op.pl</a>,
+        },
         {
             icon: <MapPinIcon />,
             content: (

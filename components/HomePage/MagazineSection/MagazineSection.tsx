@@ -22,7 +22,7 @@ export default function MagazineSection() {
                         </p>
                     </div>
 
-                    <Link href={''}>
+                    <Link href={'/czasopismo'}>
                         <motion.div
                             whileHover={{
                                 scale: 1.1,

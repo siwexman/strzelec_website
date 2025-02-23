@@ -16,15 +16,14 @@ export default function PaginationContainer({
 }: Props) {
     const router = useRouter();
 
-    // if (totalPages === 1) {
-    //     return null;
-    // }
+    if (totalPages === 1) {
+        return;
+    }
 
     return (
         <Pagination
             classNames={{
-                wrapper: 'py-6',
-                item: 'mx-auto',
+                wrapper: 'py-6 mx-auto',
             }}
             total={totalPages}
             initialPage={0}

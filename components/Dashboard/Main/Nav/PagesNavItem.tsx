@@ -43,7 +43,10 @@ export default function PageNavItem({
             <h3 className="text-2xl py-4 font-bold">{typeNav[title].header}</h3>
             <div className="grid grid-cols-2 justify-center gap-4 relative">
                 <DashboardBtn
-                    isDisabled={data === 0}
+                    isDisabled={
+                        title === 'czasopisma' &&
+                        (data === 0 || data === undefined)
+                    }
                     link={`dashboard/new-${typeNav[title].link}`}
                     content={`Dodaj ${typeNav[title].single}`}
                 />

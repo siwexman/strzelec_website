@@ -3,5 +3,5 @@ export default function PostsLayout({
 }: Readonly<{
     children: React.ReactNode;
 }>) {
-    return <div className="max-w-maxWidthSm mx-auto">{children}</div>;
+    return <div className="max-w-maxWidthSm mx-auto py-8">{children}</div>;
 }

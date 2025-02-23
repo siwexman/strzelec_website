@@ -5,7 +5,7 @@ import { PostWithImages } from '@/types/post';
 import DeleteItem from '../../../UI/Buttons/DeleteItem';
 import { useModal } from '@/components/context/ModalContext';
 import { useRouter } from 'next/navigation';
-import { deleteItemModal } from '@/store/action/deleteItemModal';
+import { deleteItemModal } from '@/store/action/modal/deleteItemModal';
 import { deletePost } from '@/store/action/post/delete/deletePost';
 
 export default function LatestNewsItem({ post }: { post: PostWithImages }) {

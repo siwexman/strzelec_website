@@ -5,6 +5,9 @@ export async function getPostBySlug(slug: string) {
         where: {
             slug: slug,
         },
+        include: {
+            images: true,
+        },
     });
 
     return post;

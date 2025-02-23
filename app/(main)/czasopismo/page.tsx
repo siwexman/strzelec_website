@@ -1,9 +1,9 @@
 import Magazines from '@/components/Dashboard/Magazines/Magazines';
 
-export default async function MagazinesPage() {
+export default function Page() {
     return (
         <div className="py-4">
-            <Magazines isUser={true} />
+            <Magazines />
         </div>
     );
 }

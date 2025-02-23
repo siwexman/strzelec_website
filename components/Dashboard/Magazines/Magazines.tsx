@@ -4,7 +4,7 @@ import { getAllMagazines } from '@/store/action/magazine/get/getMagazines';
 import MagazineItem from './MagazineItem';
 import Link from 'next/link';
 
-export default async function Magazines() {
+export default async function Magazines({ isUser = false }) {
     const magazines = await getAllMagazines();
 
     if (!magazines || magazines.length === 0) {
@@ -29,7 +29,11 @@ export default async function Magazines() {
     return (
         <div className="py-4 grid grid-cols-4 gap-8">
             {magazines.map(magazine => (
-                <MagazineItem key={magazine.id} magazine={magazine} />
+                <MagazineItem
+                    key={magazine.id}
+                    magazine={magazine}
+                    isUser={isUser}
+                />
             ))}
         </div>
     );
