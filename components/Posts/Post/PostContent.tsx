@@ -6,12 +6,12 @@ export default function PostContent({ post }: { post: PostWithImages }) {
         <div className="py-4">
             <div className="text-center py-8">
                 <h2>{post.title}</h2>
-                <p className="text-right text-gray-800">
+                <p className="p-2 font-light italic text-right text-gray-800">
                     {post.date.toLocaleDateString()}
                 </p>
             </div>
             <div
-                className="px-4 py-8"
+                className="px-4 py-6"
                 dangerouslySetInnerHTML={{ __html: post.description }}
             ></div>
             <LightBoxImage images={post.images} />

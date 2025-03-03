@@ -14,11 +14,11 @@ export default function Images({ images, onClick }: ImagesProps) {
     }
 
     return (
-        <div className="px-4 py-2 bg-gray-100 rounded-lg">
+        <div className="p-4 bg-gray-100 rounded-lg">
             <div className="text-center text-lg font-semibold">
                 <p>Zdjęcia:</p>
             </div>
-            <div className="py-2 grid grid-cols-5 gap-4">
+            <div className="py-2 grid grid-cols-3 md:grid-cols-5 gap-4">
                 {images.map((image, index) => (
                     <motion.div
                         className="relative w-full h-40"

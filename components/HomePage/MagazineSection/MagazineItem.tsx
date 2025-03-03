@@ -1,7 +1,7 @@
 import { getMagazineLatest } from '@/store/action/magazine/get/getMagazine';
 import Image from 'next/image';
 
-export default async function MagazineItem() {
+export default async function MagazineItem({ cssClass }: { cssClass: string }) {
     const magazine = await getMagazineLatest();
 
     if (!magazine) {
@@ -11,13 +11,13 @@ export default async function MagazineItem() {
     const imgSrc = magazine.imgUrl;
 
     return (
-        <div className="relative w-1/4">
+        <div className={`relative w-48 h-64 mx-auto ${cssClass}`}>
             <Image
                 className="rounded"
                 src={imgSrc}
                 alt="Okładka czasopisma"
                 fill
-                sizes="10vw"
+                sizes="50vw"
             />
         </div>
     );

@@ -23,6 +23,7 @@ export default function PaginationContainer({
     return (
         <Pagination
             classNames={{
+                base: 'w-full mx-auto',
                 wrapper: 'py-6 mx-auto',
             }}
             total={totalPages}

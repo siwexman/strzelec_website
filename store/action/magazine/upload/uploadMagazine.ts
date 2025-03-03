@@ -15,13 +15,13 @@ export async function uploadMagazine(
     const magazineName = issue.replace('/', '-');
     const singleMagazineDir = path.join(magazinesDir, magazineName);
 
-    const checkMagazine = await getMagazine(magazineName);
-
-    if (checkMagazine) {
-        return { type: 'error', message: 'Taki numer już istnieje' };
-    }
-
     try {
+        const checkMagazine = await getMagazine(issue);
+
+        if (checkMagazine) {
+            throw new Error('Taka nazwa czasopisma już istnieje!');
+        }
+
         await fs.mkdir(singleMagazineDir, { recursive: true });
 
         const buffer = Buffer.from(magazine);
@@ -31,6 +31,12 @@ export async function uploadMagazine(
 
         await fs.writeFile(filePath, buffer);
 
+        const counter = await prisma.counter.findFirst();
+
+        if (counter?.counter === 0 || !counter) {
+            throw new Error('Nie ma żadnych kredytów! Spróbuj ponownie jutro.');
+        }
+
         // convertion pdf (first page) -> img
         const resultConvert = await convertPdfToImage(
             filePath,
@@ -39,9 +45,7 @@ export async function uploadMagazine(
         );
 
         if (!resultConvert) {
-            throw new Error(
-                'There was an error or credits are 0. Try next day'
-            );
+            throw new Error('Wystąpił błąd podczas konwersji pdf');
         }
 
         await prisma.magazine.create({
@@ -54,10 +58,9 @@ export async function uploadMagazine(
 
         return { type: 'correct', message: 'Czasopismo dodane pomyślnie' };
     } catch (error) {
-        console.log(error);
         return {
             type: 'error',
-            message: `Dodawanie nie powiodło się :(\n${error}`,
+            message: `Dodawanie nie powiodło się!\n${error}`,
         };
     }
 }

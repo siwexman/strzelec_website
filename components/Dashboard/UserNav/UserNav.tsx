@@ -1,10 +1,9 @@
 import Link from 'next/link';
 
-import Logout from '@/components/UI/Modal/Login/Logout';
-import UserLogo from './UserLogo';
-
 import { getSessionUser } from '@/store/action/session';
-import HomeIcon from '@/components/UI/Icons/Home';
+
+import Logout from '@/components/UI/Modal/Login/Logout';
+import { Home, UserCircle } from 'lucide-react';
 
 export default async function UserNav() {
     const user = await getSessionUser();
@@ -14,13 +13,15 @@ export default async function UserNav() {
     }
 
     return (
-        <div className="w-full absolute top-0 bg-cyan-900 text-white p-2">
+        <div className="w-full absolute top-0 bg-cyan-900 text-white">
             <div className="max-w-maxWidth mx-auto flex justify-between">
                 <div className="flex">
-                    <UserLogo />
-                    <p className="text-lg my-auto px-4">{user.name}</p>
+                    <div className="my-auto">
+                        <UserCircle width={20} />
+                    </div>
+                    <p className="my-auto px-4">{user.name}</p>
                     <a href={'/'} className="flex mx-4">
-                        <HomeIcon className="my-auto" />
+                        <Home className="my-auto" />
                     </a>
                 </div>
                 <div className="flex gap-4">

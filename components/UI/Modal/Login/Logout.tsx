@@ -1,12 +1,12 @@
 'use client';
 
-import PowerOffIcon from '@/components/UI/Icons/PowerOff';
+import { Power } from 'lucide-react';
 import { signOut } from 'next-auth/react';
 
 export default function Logout() {
     return (
         <button onClick={() => signOut()}>
-            <PowerOffIcon />
+            <Power />
         </button>
     );
 }

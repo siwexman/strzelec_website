@@ -1,4 +1,4 @@
-import DelayBtn from './DelayBtn';
+import RouterBtn from './RouterBtn';
 
 export default function ModalInfo({
     type,
@@ -23,7 +23,7 @@ export default function ModalInfo({
                 </p>
             </div>
             {type === 'correct' ? (
-                <DelayBtn />
+                <RouterBtn />
             ) : (
                 <button
                     className="w-1/2 mx-auto p-2 bg-red-500 rounded text-white font-semibold"

@@ -28,14 +28,14 @@ export default function Modal() {
     return (
         <dialog
             onClick={handleSafeClose}
-            className="bg-black05 w-full h-full fixed inset-0 z-50 top-0 left-0 flex justify-center items-center"
+            className="bg-black05 w-full h-full fixed inset-0 z-[999] top-0 left-0 flex justify-center items-center"
         >
             <AnimatePresence>
                 {isOpen && (
                     <motion.div
                         key="modal"
                         onClick={e => e.stopPropagation()}
-                        className="bg-white p-6 max-w-[500px] min-w-[350px] rounded-xl relative"
+                        className="bg-white p-6 mx-4 max-w-[500px] min-w-[250px] rounded-xl relative"
                         initial={{ opacity: 0, scale: 0 }}
                         animate={{ opacity: 1, scale: 1 }}
                         exit={{ opacity: 0, scale: 0 }}

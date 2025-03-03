@@ -27,7 +27,7 @@ export default async function Magazines({ isUser = false }) {
     }
 
     return (
-        <div className="py-4 grid grid-cols-4 gap-8">
+        <div className="py-4 grid grid-cols-2 md:grid-cols-4 gap-8">
             {magazines.map(magazine => (
                 <MagazineItem
                     key={magazine.id}

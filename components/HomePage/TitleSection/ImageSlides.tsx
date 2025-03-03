@@ -17,21 +17,43 @@ export default function ImageSlides() {
         return () => clearInterval(interval);
     }, []);
 
+    const variants = {
+        enter: {
+            opacity: 0,
+            x: 100,
+        },
+        center: {
+            opacity: 1,
+            x: 0,
+        },
+        exit: {
+            opacity: 100,
+            x: -100,
+        },
+    };
+
     return (
-        <AnimatePresence>
+        <AnimatePresence initial={false}>
             {backgroundImages.map((image, index) =>
                 index === currentIndex ? (
                     <motion.div
-                        key={index}
-                        className="w-full h-full absolute"
-                        initial={{ opacity: 0.5 }}
-                        animate={{
-                            opacity: 1,
+                        key={currentIndex}
+                        variants={variants}
+                        initial="enter"
+                        animate="center"
+                        exit="exit"
+                        transition={{
+                            x: { type: 'spring', stiffness: 300, damping: 30 },
+                            opacity: { duration: 0.2 },
                         }}
-                        exit={{ opacity: 0, rotate: -10, x: -500, scale: 0.8 }}
-                        transition={{ duration: 1 }}
+                        className="w-full h-full absolute"
                     >
-                        <Image src={image.image} alt={image.alt} fill />
+                        <Image
+                            src={image.image}
+                            alt={image.alt}
+                            fill
+                            sizes="50vw"
+                        />
                     </motion.div>
                 ) : null
             )}

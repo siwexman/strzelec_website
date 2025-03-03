@@ -47,7 +47,7 @@ export default function InfoButtons() {
     ];
 
     return (
-        <div className="my-auto flex gap-4">
+        <div className="my-auto grid grid-cols-1 md:flex gap-4">
             {buttons.map((button, index) => (
                 <InfoButton
                     key={index}

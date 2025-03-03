@@ -45,12 +45,13 @@ export default function MagazineForm() {
                 values.magazine.name,
                 values.issue.combined
             );
+            console.log(modalInfo);
 
             if (modalInfo) {
                 handleOpen(modalInfo.type, modalInfo.message);
             }
         } catch (error) {
-            console.log(error);
+            handleOpen('error', (error as Error).message);
         } finally {
             setIsPending(false);
         }

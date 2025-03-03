@@ -13,7 +13,7 @@ export default function NewsSection() {
             <div className="text-center">
                 <Link
                     href={'/aktualnosci'}
-                    className="flex justify-center gap-2 font-semibold text-md"
+                    className="flex justify-center gap-2 font-semibold text-md "
                 >
                     Przeczytaj więcej <ArrowRightIcon />
                 </Link>

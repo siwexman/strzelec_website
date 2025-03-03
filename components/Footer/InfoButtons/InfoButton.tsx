@@ -13,7 +13,7 @@ export default function InfoButton({
     handleClick: () => void;
 }) {
     return (
-        <div className="flex rounded-full bg-slate-100 w-fit">
+        <div className="mx-auto flex rounded-full bg-slate-100 w-fit">
             <motion.div
                 whileHover={{ scale: 1.1 }}
                 onClick={handleClick}

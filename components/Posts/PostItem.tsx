@@ -26,19 +26,19 @@ export default function PostItem({
     return (
         <div className="relative border rounded hover:border-slate-700 transition-all">
             <div className="grid grid-cols-6 h-full">
-                <div className="relative col-span-2 h-full">
+                <div className="relative col-span-full h-40 md:col-span-2 md:h-full">
                     <Image
                         className="rounded-l"
                         src={post.images[0].url}
                         alt={post.title}
                         fill
-                        sizes="20vw"
+                        sizes="50vw"
                     />
                 </div>
-                <div className="col-span-4 px-6 py-4 flex flex-col justify-between">
+                <div className="row-start-2 col-span-full md:row-start-auto md:col-span-4 px-6 py-4 flex flex-col justify-between">
                     <div>
                         <h3 className="text-xl py-2 uppercase">{post.title}</h3>
-                        <p className="pt-2 pb-4 text-gray-500">
+                        <p className="text-sm font-light italic md:pt-2 pb-4 text-gray-500">
                             {post.summary}
                         </p>
                     </div>

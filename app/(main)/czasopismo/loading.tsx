@@ -1,7 +1,7 @@
 export default function Loading() {
     return (
         <div className="py-4 max-w-maxWidthSm mx-auto">
-            <div className="grid grid-cols-4 gap-8">
+            <div className="grid grid-cols-2 grid-rows-2 md:grid-cols-4 md:grid-rows-1 gap-8">
                 {[...Array(4).keys()].map(i => (
                     <div
                         key={i}

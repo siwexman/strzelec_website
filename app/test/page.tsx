@@ -1,5 +1,3 @@
-import StarterLoading from '@/components/Loading/StarterLoading';
-
-export default function Loading() {
-    return <StarterLoading />;
+export default function Page() {
+    return <div>test</div>;
 }

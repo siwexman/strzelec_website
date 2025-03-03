@@ -1,5 +1,6 @@
 'use client';
 
+import { overflowHidden } from '@/store/overflow/overflowHidden';
 import { createContext, useContext, useState } from 'react';
 
 interface ModalContextType {
@@ -40,7 +41,7 @@ export function ModalProvider(props: { children: JSX.Element }) {
         message: string = '',
         onConfirm?: () => void
     ) {
-        document.querySelector('body')?.style.setProperty('overflow', 'hidden');
+        overflowHidden('hidden');
 
         setModalType(content);
         setModalContent(message);
@@ -49,7 +50,7 @@ export function ModalProvider(props: { children: JSX.Element }) {
     }
 
     function handleClose() {
-        document.querySelector('body')?.style.setProperty('overflow', 'auto');
+        overflowHidden('auto');
 
         setIsOpen(false);
         setModalType('');

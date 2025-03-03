@@ -66,7 +66,7 @@ export async function convertPdfToImage(
         const writeStream = fs.createWriteStream(outputPath);
 
         if (!file.url) {
-            return;
+            throw new Error('Wystąpił bład z plikiem');
         }
 
         https.get(file.url, response => {

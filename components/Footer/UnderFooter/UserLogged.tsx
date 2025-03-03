@@ -3,10 +3,10 @@ import { getSessionUser } from '@/store/action/session';
 
 export default async function UserLogged() {
     const user = await getSessionUser();
-    
+
     return (
         <div className="flex gap-1">
-            {!user && <LoginButton />}
+            <LoginButton user={user} />
             <p className="text-sm my-auto">
                 Zrealizował{' '}
                 <a href="" className="font-semibold">

@@ -46,7 +46,7 @@ export default function MagazineItem({
                         src={magazine.imgUrl}
                         alt={magazine.issue}
                         fill
-                        sizes="10vw"
+                        sizes="50vw"
                     />
                 </div>
                 <p className="py-1">{magazine.issue}</p>

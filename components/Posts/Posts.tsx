@@ -19,7 +19,7 @@ export default async function Posts({
 
     return (
         <PostsContainer totalPages={totalPages} currentPage={pageNumber}>
-            <div className="py-4 grid grid-cols-1 gap-4 auto-rows-fr">
+            <div className="px-2 py-4 grid grid-cols-1 gap-6 auto-rows-fr md:px-0">
                 {posts.map(post => (
                     <PostItem key={post.id} post={post} isUser={isUser} />
                 ))}
