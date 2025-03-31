@@ -1,11 +1,13 @@
 import Link from 'next/link';
 
-export default function Tax({ isMobile = false }: { isMobile?: boolean }) {
-    const cssClass = isMobile ? '' : '';
-
+export default function Tax({
+    handleCloseMenu,
+}: {
+    handleCloseMenu?: () => void;
+}) {
     return (
-        <div className="rounded-lg lg:absolute bottom-0 lg:top-0 lg:right-1/3 p-2 lg:rounded-b-lg bg-red-600 font-semibold text-white text-center">
-            <Link href="/podatek">
+        <div className="my-auto rounded-lg p-2 bg-red-600 font-semibold text-white text-center">
+            <Link href="/podatek" onClick={handleCloseMenu}>
                 <p>Przekaż 1,5%</p>
             </Link>
         </div>

@@ -54,6 +54,7 @@ export default function MobileMenu({
                     </ul>
                     <div>
                         <div className="flex gap-4 justify-center py-2">
+                            {/* TODO: add links */}
                             <Link href={''}>
                                 <FacebookIcon />
                             </Link>
@@ -61,7 +62,7 @@ export default function MobileMenu({
                                 <YoutubeIcon />
                             </Link>
                         </div>
-                        <Tax isMobile />
+                        <Tax handleCloseMenu={handleCloseMenu} />
                     </div>
                 </div>
             </div>

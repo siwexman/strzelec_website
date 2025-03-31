@@ -8,6 +8,11 @@
     }
 }
 
+body {
+    --border-color: rgb(100, 199, 123 / var(--tw-bg-opacity, 1));
+    --bg-color: #fff;
+}
+
 h1 {
     font-size: 4.5rem;
 
@@ -21,6 +26,14 @@ h2 {
 
     @media only screen and (max-width: 48rem) {
         font-size: 1.75rem;
+    }
+}
+
+h3 {
+    font-size: 1.75rem;
+
+    @media only screen and (max-width: 48rem) {
+        font-size: 1.25rem;
     }
 }
 

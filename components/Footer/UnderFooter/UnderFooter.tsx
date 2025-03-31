@@ -9,6 +9,7 @@ export default function UnderFooter() {
         <div className="flex justify-between px-4 py-2">
             <UserLogged />
             <div className="flex gap-4 px-2">
+                {/* TODO: add links */}
                 <Link href={''}>
                     <FacebookIcon />
                 </Link>
