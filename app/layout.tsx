@@ -2,7 +2,6 @@ import { Metadata } from 'next';
 
 import { Roboto } from 'next/font/google';
 import './globals.css';
-import { Suspense } from 'react';
 
 const roboto = Roboto({
     subsets: ['latin'],

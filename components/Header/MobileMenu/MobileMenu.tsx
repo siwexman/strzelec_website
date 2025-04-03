@@ -3,7 +3,6 @@ import Tax from '@/components/HomePage/GiveTax/Tax';
 import Link from 'next/link';
 
 import { motion } from 'framer-motion';
-import { overflowHidden } from '@/store/overflow/overflowHidden';
 import FacebookIcon from '@/components/UI/Icons/Facebook';
 import YoutubeIcon from '@/components/UI/Icons/Youtube';
 import MobileLink from './MobileLink';
@@ -16,7 +15,7 @@ export default function MobileMenu({
     handleClose: () => void;
 }) {
     function handleCloseMenu() {
-        overflowHidden('auto');
+        // overflowHidden('auto');
         handleClose();
     }
 
