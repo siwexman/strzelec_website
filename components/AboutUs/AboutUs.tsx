@@ -25,6 +25,7 @@ export default function AboutUs() {
             tak by młodzież mogła się spełniać...&quot;
             </p> */}
             </div>
+            {/* TODO: zmienic nawigacje po za bardzo schodzi w dol */}
             <NavButtons />
             <Sections />
             <Structure />
