@@ -6,7 +6,8 @@ import { prisma } from '@/lib/prisma';
 export const authOptions: NextAuthOptions = {
     session: {
         strategy: 'jwt',
-        // maxAge: 2 * 60 * 60, TODO: uncomment when ready
+        // TODO: uncomment when ready
+        // maxAge: 2 * 60 * 60,
     },
     pages: {
         signIn: '/',
@@ -40,13 +41,10 @@ export const authOptions: NextAuthOptions = {
                 username: { label: 'Username', type: 'text' },
                 password: { label: 'Password', type: 'password' },
             },
-            async authorize(
-                credentials: {
-                    username?: string;
-                    password?: string;
-                },
-                req
-            ) {
+            async authorize(credentials: {
+                username?: string;
+                password?: string;
+            }) {
                 if (!credentials?.username || !credentials?.password) {
                     return null;
                 }
