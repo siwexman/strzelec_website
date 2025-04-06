@@ -5,7 +5,7 @@ export default async function LatestNewsComponent() {
     const posts = await getPostsWithMainImage(5);
 
     return (
-        <div className="border w-full rounded px-1 py-2 grid grid-cols-5 gap-2 items-stretch">
+        <div className="border w-full rounded px-1 py-2 flex md:grid grid-cols-5 gap-2 items-stretch overflow-y-scroll md:overflow-auto">
             {posts.length === 0 && (
                 <div className="text center col-span-full py-4">
                     <p>Brak postów</p>

@@ -1,6 +1,6 @@
 import { z } from 'zod';
 
-const imgSizeLimit = 5 * 1024 * 1024; // 5MB
+const imgSizeLimit = 15 * 1024 * 1024; // 15MB
 const magazineSizeLimit = 15 * 1024 * 1024; // 15MB
 const imageMimeTypes = ['image/jpeg', 'image/png', 'image/jpg'];
 
@@ -13,7 +13,7 @@ export const imageSchema = z
         }),
     })
     .refine(file => file.size < imgSizeLimit, {
-        message: 'Plik za duży! Maksymalnie 5MB',
+        message: 'Plik za duży! Maksymalnie 15MB',
     });
 
 export const userFormSchema = z.object({

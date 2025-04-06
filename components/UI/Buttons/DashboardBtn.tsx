@@ -22,7 +22,7 @@ export default function DashboardBtn({
         <Link href={link}>
             <motion.div
                 whileHover={{ x: -5, y: -5 }}
-                className="py-2 px-4 text-center rounded-xl border-2 bg-slate-400 text-white font-semibold"
+                className="p-2 md:py-2 md:px-4 text-center rounded-xl border-2 bg-slate-400 text-white font-semibold"
             >
                 {content}
             </motion.div>

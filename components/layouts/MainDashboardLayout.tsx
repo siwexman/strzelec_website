@@ -10,7 +10,7 @@ export default function MainDashboardLayout(props: { children: ReactNode }) {
                 <Modal />
                 <UserNav />
                 <div className="mt-20">
-                    <div className="max-w-maxWidthSm mx-auto px-8 pt-8 w-full">
+                    <div className="max-w-maxWidthSm mx-auto px-4 md:px-8 pt-8 w-full">
                         {props.children}
                     </div>
                 </div>

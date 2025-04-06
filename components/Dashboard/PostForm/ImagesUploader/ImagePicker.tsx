@@ -15,12 +15,12 @@ export default function ImagePicker(props: {
             className={`w-full border rounded-md overflow-x-auto relative ${pickerClass}`}
         >
             {!props.edit && (
-                        <div className="bg-yellow-300 text-sm rounded-lg absolute bottom-0 translate-x-1/2">
-                            <p className="px-2">
-                                Pierwsze zdjęcie będzie zdjęciem głównym postu!
-                            </p>
-                        </div>
-                    )}
+                <div className="bg-yellow-300 text-sm rounded-lg absolute bottom-0 md:translate-x-1/2 z-[100]">
+                    <p className="px-2">
+                        Pierwsze zdjęcie będzie zdjęciem głównym postu!
+                    </p>
+                </div>
+            )}
             {props.serverImages && props.serverImages.length > 0 && (
                 <div>
                     <p className="text-xs pt-1">Zdjęcia z serwera</p>

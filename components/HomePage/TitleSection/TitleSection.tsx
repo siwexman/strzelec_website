@@ -11,18 +11,13 @@ export default function TitleSection() {
                 <ImageSlides />
                 {/* </div> */}
                 <div className="absolute top-0 left-0 radial-gradient-black w-full h-full"></div>
-                <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-1/2 text-white">
+                <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 text-white w-full">
                     <h1 className="font-bold leading-tight">
-                        {/* TODO: JEDNOSTKA STRZELECKA 2021 im. płk. Leopolda Lisa-Kuli w Rzeszowie */}
-                        Związek Strzelecki &quot;Strzelec&quot;
+                        Jednostka Strzelecka 2021
                     </h1>
-                    <p className="font-light text-xs md:text-base py-1 hidden md:block">
-                        Lorem ipsum, dolor sit amet consectetur adipisicing
-                        elit. Aliquid molestias magnam distinctio maiores ullam,
-                        facilis sed fuga dolores explicabo animi dicta fugiat
-                        corrupti quibusdam obcaecati tempore et beatae velit
-                        culpa.
-                    </p>
+                    <h4 className="text-xl">
+                        im. płk. Leopolda Lisa-Kuli w{'\u00A0'}Rzeszowie
+                    </h4>
                     <ButtonJoin />
                 </div>
             </div>

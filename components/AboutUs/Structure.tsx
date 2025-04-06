@@ -2,7 +2,7 @@ export default function Structure() {
     return (
         <>
             <div id="struktura" className="py-4">
-                <h3 className="text-center">
+                <h3 className="text-center font-semibold">
                     Struktura Jednostki Strzeleckiej
                 </h3>
                 <div className="w-full h-px bg-gray-500"></div>
@@ -51,22 +51,15 @@ export default function Structure() {
                         </p>
                     </li>
                 </ul>
-                <div className="px-2 py-4">
+
+                <div className="w-full my-8 h-px bg-gray-500"></div>
+                <div className="p-2 pb-6">
                     <div className="py-2">
                         <p className="font-bold">
                             Komendant Główny Związku Strzeleckiego
                             &quot;Strzelec&quot; Józefa Piłsudskiego
                         </p>
                         <p>bryg. ZS Marek Matuła</p>
-                        <p>
-                            email:{' '}
-                            <a href="mailto:marekmatula4@gmail.com">
-                                marekmatula4@gmail.com
-                            </a>
-                        </p>
-                        <p>
-                            tel.: <a href="tel:+48794403179">794 403 179</a>
-                        </p>
                     </div>
                     <div>
                         <p className="font-bold">
@@ -75,15 +68,6 @@ export default function Structure() {
                             Piłsudskiego
                         </p>
                         <p>st. insp. ZS Marek Strączek</p>
-                        <p>
-                            email:{' '}
-                            <a href="mailto:marek.straczek@op.pl">
-                                marek.straczek@op.pl
-                            </a>
-                        </p>
-                        <p>
-                            tel.: <a href="tel:+48604594636">604 594 636</a>
-                        </p>
                     </div>
                 </div>
             </div>

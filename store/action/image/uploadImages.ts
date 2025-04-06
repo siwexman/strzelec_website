@@ -3,6 +3,7 @@ import path from 'path';
 import { prisma } from '@/lib/prisma';
 import { UploadedPost } from '@/types/post';
 import { Post } from '@prisma/client';
+import { compressImageBuffer } from './compressImageBuffer';
 
 export async function uploadImages(
     post: Post,
@@ -27,13 +28,16 @@ export async function uploadImages(
     const uploadedImages = [];
     for (const [index, file] of uploadedPost.images.entries()) {
         const buffer = Buffer.from(await file.arrayBuffer());
-        const extension = '.' + file.name.split('.')[1];
+        const extension = '.' + file.name.split('.')[1].toLowerCase();
+
+        const compressedBuffer = await compressImageBuffer(buffer, extension);
+
         const fileName = `${Date.now()}_${
             fileLastIndex ? index + fileLastIndex : index
         }${extension}`;
         const filePath = path.join(postDir, fileName);
 
-        await fs.writeFile(filePath, buffer);
+        await fs.writeFile(filePath, compressedBuffer);
 
         uploadedImages.push({
             postId: post.id,

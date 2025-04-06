@@ -15,7 +15,11 @@ export default function InfoButtons() {
     const buttons = [
         {
             icon: <EnvelopeIcon />,
-            content: <a href="mailto:strzelec@op.pl">strzelec@op.pl</a>,
+            content: (
+                <a href="mailto:strzelec.rzeszow@op.pl">
+                    strzelec.rzeszow@op.pl
+                </a>
+            ),
         },
         {
             icon: <MapPinIcon />,
@@ -40,7 +44,9 @@ export default function InfoButtons() {
             content: (
                 <>
                     <p className="text-sm">Biuro oraz Świetlica</p>
-                    <p className="text-sm">czynne codziennie 16:00 - 19:00</p>
+                    <p className="text-sm">
+                        czynne pn., wt. i czw. 17:00 - 19:00
+                    </p>
                 </>
             ),
         },

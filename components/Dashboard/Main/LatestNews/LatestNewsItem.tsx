@@ -13,7 +13,7 @@ export default function LatestNewsItem({ post }: { post: PostWithImages }) {
     const router = useRouter();
 
     return (
-        <div className="relative">
+        <div className="relative w-full">
             <DeleteItem
                 handleClick={() =>
                     deleteItemModal(
@@ -25,8 +25,8 @@ export default function LatestNewsItem({ post }: { post: PostWithImages }) {
                     )
                 }
             />
-            <div className="rounded-sm border h-full grid grid-rows-2">
-                <div className="relative min-h-28">
+            <div className="rounded-sm border h-full grid grid-rows-2 w-full">
+                <div className="relative min-h-28 min-w-36">
                     <Image
                         priority
                         src={post.images[0].url}

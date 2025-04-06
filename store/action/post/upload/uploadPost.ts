@@ -7,6 +7,7 @@ import { prisma } from '@/lib/prisma';
 import { getSessionUser } from '@/store/action/session';
 import { getEachEntry } from '../../form/getEachEntry';
 import { uploadImages } from '../../image/uploadImages';
+import { preventSingleCharacters } from '@/utills/typography';
 
 export default async function uploadPost(
     formData: FormData
@@ -23,9 +24,11 @@ export default async function uploadPost(
         // create post
         const post = await prisma.post.create({
             data: {
-                title: uploadedPost.title,
-                summary: uploadedPost.summary,
-                description: xss(uploadedPost.description),
+                title: preventSingleCharacters(uploadedPost.title),
+                summary: preventSingleCharacters(uploadedPost.summary),
+                description: xss(
+                    preventSingleCharacters(uploadedPost.description)
+                ),
                 authorId: user.id,
                 date: new Date(),
                 slug: slugify(uploadedPost.title, { lower: true }),

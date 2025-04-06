@@ -88,8 +88,8 @@ export default function ImagesUploader({
 
     return (
         <div className="w-full flex flex-col pt-4">
-            <div className="grid grid-cols-3 gap-2 relative items-center">
-                <div>
+            <div className="grid grid-rows-2 grid-cols-2 md:grid-cols-3 md:gap-2 relative items-center">
+                <div className="col-start-1 row-start-1 col-span-2 md:col-auto">
                     <FormField
                         control={form.control}
                         name="images"
@@ -114,14 +114,14 @@ export default function ImagesUploader({
                         )}
                     />
                     <Button
-                        className=" bg-slate-600 w-3/4"
+                        className=" bg-slate-600 md:w-3/4"
                         type="button"
                         onClick={handlePickClick}
                     >
                         Wybierz zdjęcia
                     </Button>
                 </div>
-                <div className="col-span-2 relative py-2">
+                <div className="col-span-2 relative py-2 row-start-2 md:row-start-1">
                     <FormLabel
                         htmlFor="images"
                         className={`font-semibold ${

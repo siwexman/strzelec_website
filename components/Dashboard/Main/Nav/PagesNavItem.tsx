@@ -39,7 +39,7 @@ export default function PageNavItem({
     };
 
     return (
-        <div className="py-4 text-center row-start-1">
+        <div className="py-4 text-center">
             <h3 className="text-2xl py-4 font-bold">{typeNav[title].header}</h3>
             <div className="grid grid-cols-2 justify-center gap-4 relative">
                 <DashboardBtn

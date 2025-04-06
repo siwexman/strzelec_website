@@ -13,7 +13,7 @@ export default async function UserNav() {
     }
 
     return (
-        <div className="w-full absolute top-0 bg-cyan-900 text-white">
+        <div className="w-full absolute top-0 bg-cyan-900 text-white px-2">
             <div className="max-w-maxWidth mx-auto flex justify-between">
                 <div className="flex">
                     <div className="my-auto">
@@ -25,7 +25,10 @@ export default async function UserNav() {
                     </a>
                 </div>
                 <div className="flex gap-4">
-                    <Link href={'/dashboard'} className="my-auto text-md p-2">
+                    <Link
+                        href={'/dashboard'}
+                        className="my-auto text-sm text-center md:text-md p-2"
+                    >
                         Panel Administracyjny
                     </Link>
                     <Logout />

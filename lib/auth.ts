@@ -6,8 +6,7 @@ import { prisma } from '@/lib/prisma';
 export const authOptions: NextAuthOptions = {
     session: {
         strategy: 'jwt',
-        // TODO: uncomment when ready
-        // maxAge: 2 * 60 * 60,
+        maxAge: 2 * 60 * 60,
     },
     pages: {
         signIn: '/',

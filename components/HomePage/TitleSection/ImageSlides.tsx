@@ -49,10 +49,11 @@ export default function ImageSlides() {
                         className="w-full h-full absolute"
                     >
                         <Image
+                            className="object-cover"
                             src={image.image}
                             alt={image.alt}
                             fill
-                            sizes="50vw"
+                            sizes="100vw"
                         />
                     </motion.div>
                 ) : null

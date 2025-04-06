@@ -9,11 +9,14 @@ export default function UnderFooter() {
         <div className="flex justify-between px-4 py-2">
             <UserLogged />
             <div className="flex gap-4 px-2">
-                {/* TODO: add links */}
-                <Link href={''}>
+                <Link
+                    href={
+                        'https://www.facebook.com/profile.php?id=100071100844013&locale=pl_PL'
+                    }
+                >
                     <FacebookIcon />
                 </Link>
-                <Link href={''}>
+                <Link href={'https://www.youtube.com/@JS2021Rzeszow'}>
                     <YoutubeIcon />
                 </Link>
             </div>

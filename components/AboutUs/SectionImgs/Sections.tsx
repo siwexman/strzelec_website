@@ -1,5 +1,6 @@
-import { dataJS } from './dataJS';
 import Section from './Section';
+
+import { dataJS } from './dataJS';
 
 export default function Sections() {
     return (

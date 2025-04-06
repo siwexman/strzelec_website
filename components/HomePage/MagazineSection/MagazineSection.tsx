@@ -14,11 +14,11 @@ export default function MagazineSection() {
                             Czasopismo &quot;Strzelec&quot;
                         </h2>
                         <p>
-                            Lorem ipsum dolor sit amet consectetur adipisicing
-                            elit. Tenetur odio obcaecati velit? Perferendis ex
-                            rerum tempora laborum velit nemo aperiam ea quidem
-                            perspiciatis provident, reiciendis non debitis alias
-                            voluptatum qui.
+                            &quot;Strzelec&quot; czasopismo Związku
+                            Strzeleckiego &quot;Strzelec&quot; Józefa
+                            Piłsudskiego. Zawiera ciekawe artykuły historyczne,
+                            relacje z{'\u00A0'}wydarzeń i{'\u00A0'}działalności
+                            naszej organizacji. Ukazuje się od 2007 roku.
                         </p>
                     </div>
                     <Link

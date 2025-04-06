@@ -5,7 +5,7 @@ export default function MagazineCounter({
 }) {
     return (
         <div className="absolute w-full -bottom-1 translate-y-full rounded-xl py-1 bg-blue-50">
-            <p className="text-lg text-blue-500 font-semibold">
+            <p className="text-sm md:text-lg text-blue-500 font-semibold">
                 Zostało{' '}
                 {!counter ? (
                     <span className="text-yellow-600">--</span>
@@ -14,7 +14,9 @@ export default function MagazineCounter({
                 )}{' '}
                 prób przesłania czasopisma
             </p>
-            <p className="text-sm">Licznik kasuje się każdego dnia</p>
+            <p className="text-xs md:text-sm">
+                Licznik kasuje się każdego dnia
+            </p>
         </div>
     );
 }
