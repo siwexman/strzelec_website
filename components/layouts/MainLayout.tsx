@@ -8,7 +8,7 @@ export default function MainLayout(props: { children: ReactNode }) {
         <>
             <Modal />
             <Menu />
-            <main>{props.children}</main>
+            <main className="overflow-hidden">{props.children}</main>
             <Footer />
         </>
     );

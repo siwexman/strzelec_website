@@ -1,3 +1,4 @@
+import PostNotFound from '@/components/Error/PageNotFound';
 import PostContent from '@/components/Posts/Post/PostContent';
 import { getPostBySlug } from '@/store/action/post/get/getPostBySlug';
 import { Metadata } from 'next';
@@ -27,7 +28,7 @@ export default async function Post({
     const post = await getPostBySlug(params.postSlug);
 
     if (!post) {
-        return <p>Post not found</p>;
+        return <PostNotFound />;
     }
 
     return <PostContent post={post} />;
